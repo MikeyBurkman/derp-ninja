@@ -1,0 +1,4 @@
+- Allow threads to have "primary" and "tertiary" users. The thread may show differently on the home page depending on the user type.
+- Allow a user to easily see messages previously sent
+- Allow users (maybe only primary users) to break off a thread at a given message into a new thread. (IE: when a convo gets off topic.)
+- Need to have ability to manage user groups; a user may add an entire message group to a thread then.

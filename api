@@ -1,0 +1,116 @@
+
+GET /
+Parameters: None
+Returns: index.html
+Purpose: The entrance point for the web app
+
+---
+
+GET /login
+Parameters: None
+Returns: User
+	User is either a the logged in User if there is a session active, or null, if no session is active
+Purpose: Returns the currently-logged in user, if the user is logged in
+
+---
+
+POST /login
+Parameters: None
+Body: {
+	name: String
+}
+Returns: User
+	User is either the User that matched the login information, or null, if no user was found that matched the login information.
+Purpose: Log in to the app
+
+---
+
+DELETE /login
+Parameters: None
+Returns: 200 if ok
+Purpose: Log out of the app, if currently logged in
+
+---
+
+GET /user/:userId
+Parameters: None
+Returns: User
+Purpose: Lookup the given user
+
+--
+
+GET /user/:userId/threads
+Parameters: None
+Returns: [Thread]
+Purpose: Get the threads for the given user (if available)
+
+---
+
+PUT /users
+Parameters: None
+Body: {
+	name: String
+}
+Returns: User
+Creates a new user, and logs them in as the current user
+
+---
+
+GET /thread/:threadId
+Parameters: None
+Returns: Thread
+Purpose: Look up the given thread
+
+---
+
+PUT /threads
+Parameters: None
+Body: {
+	name: String
+}
+Returns: Thread
+Purpose: Create a new thread that is moderated by the current user
+
+---
+
+GET /thread/:threadId/users
+Parameters: None
+Returns: [User]
+Purpose: Get the list of users currently listening to this thread
+
+---
+
+PUT /thread/:threadId/users
+Parameters: None
+Body: [Long]
+Returns: 201 status if ok
+Purpose: Add the list of UserIds to the given thread as non-moderators, but only if the current user is a moderator for the thread
+
+---
+
+DELETE /thread/:threadId/users/:userId
+Parameters: None
+Returns: 200 status if ok
+Purpose: Removes the user from the thread, but only if the user belongs to thread, or if the current user is a moderator for the thread
+
+---
+
+GET /thread/:threadId/messages
+Parameters: {
+	startTime: Long (millis since epoch), optional
+	endTime: Long (millis since epoc), optional
+}
+Returns: [Message]
+Purpose: Gets the messages for a given thread (assuming they're visible to the current user) in the given time range. 
+	Either time may be left out to not put a limit on start/end times.
+	
+---
+
+PUT /thread/:threadId/messages
+Parameters: None
+Body: {
+	text: String
+}
+Returns: Message
+Purpose: Creates a new message with the given text, and adds it to the thread. Returns the created message.
+

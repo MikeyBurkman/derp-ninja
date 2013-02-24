@@ -1,0 +1,52 @@
+
+Idea: Cross between IM and email
+- Permanency and searchability of email, but immediacy and organization of IM
+
+Threads are created, and the thread owner(s) can title the thread, and add whomever they want to listen to the thread
+If a user is logged in and are added to a thread, that thread will show up on their home screen
+Clicking that will place them in a chat room of sorts. Messages can be posted to that thread that all listeners can see.
+If a user is part of the thread and logged on, the thread appears as if it were IM.
+Users who are part of a thread but are not online can see the thread when the next log on, similar to email.
+Users can opt out of a thread is they so choose. (Design point: allow them to still see the archived thread up to the 
+	point they left?)
+
+One key difference between this and regular IM is that each thread has a title and is archived for easier searching.
+	Each thread should generally focus on a single topic, in the way that an email thread generally does.
+	A user (or the thread owner) can tag a thread with any number of words that are not part of the thread text, and 
+		then can search by tag later. These tags are in addition to the regular full-text search.
+The key difference between this and email is that all messages regarding a thread are kept in a single, easy to find
+	location. Also, messages could also be edited.
+	
+For scalability, use a SQL database for more recent messages, but also write messages into a no-SQL DB.
+	Searches going beyond the scope of the SQL DB can still search the no-SQL DB.
+	This also makes changes to the SQL DB model easier, as messages can be restored from the no-SQL DB.
+	
+Initial Planned Data types:
+User: A user that logs in, and creates/reads messages/threads
+	ID
+	Name
+Thread: Contains a linear series of messages
+	ID
+Thread_Member: Links a user to a thread; also gives information regarding the user's relationship to the thread
+	ID
+	User_ID
+	Thread_ID
+	Is_Moderator
+Message: A message for a particular thread
+	ID
+	Thread_ID
+	User_ID
+	Date
+	Text
+Tag: A piece of searchable text that is applied to a single message or an entire thread. (Thread_ID must always be present, for easiser searching)
+	ID
+	Thread_ID
+	Message_ID
+	Text
+Thread_Link: A many to many relationship that can link two messages together, for reference only
+	Message_ID
+	Message_ID
+
+For security reasons, all URLs that access resources must have the thread ID in them. This will allow for all queries
+	to have an inner join on Thread_Member to verify that the user can indeed see the resource.
+

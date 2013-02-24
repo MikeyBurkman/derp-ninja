@@ -1,0 +1,88 @@
+<html>
+	
+    <head>
+        <title>Derp Ninja Chat</title>
+        <link href="css/app.css" rel="stylesheet" />
+    </head>
+	
+    <body>
+        <!-- Login -->
+        <div data-bind="visible: !isLoggedIn()">
+            <label>
+                <div class="invalidLogin" data-bind="visible: loginInfo.invalidName">
+                    Invalid Login: [<span class="invalidLogin" data-bind="text: loginInfo.invalidName"></span>]
+                </div>
+                User Name: <input data-bind="value: loginInfo.username" />
+            </label>
+            <br />
+            <button data-bind="click: logIn">Log In</button>
+            <br />
+            <button data-bind="visible: loginInfo.invalidName, click: createUser">
+                Create User: <span data-bind="text: loginInfo.invalidName"></span>
+            </button>
+        </div>
+        
+        <div data-bind="template: {name: 'mainUserTemplate', if: isLoggedIn(), data: user}"></div>
+        
+        <script id="mainUserTemplate" type="text/html">
+            <!-- To be rendered with a user passed to it -->
+            <h2>Welcome <span data-bind="text: name"></span>!</h2>
+            <button data-bind="click: $root.logOut">Log Out</button>
+            <h2>Available Threads (<span data-bind="text: threads().length"></span>)</h2>
+            <div data-bind="if: threads().length > 0">
+            <table>
+            <thead>
+            <tr>
+            <th>Name</th><td>Date</td><th>Messages</th><th>Latest</th>
+            </tr>
+            </thead>
+            <tbody data-bind="foreach: threads">
+            <tr class="thread-list-row" data-bind="click: $root.user().openThread">
+            <td><span data-bind="text: threadName"></span></td>
+            <td><span data-bind="text: createDate"></span></td>
+            <td><span data-bind="text: messages.length"></span></td>
+            <td><span data-bind="text: latestMsg()"></span></td>
+            </tr>
+            </tbody>
+			</table>
+            </div>
+			
+            <label>New Thread: <input data-bind="value: newThreadName" /></label>
+            <button data-bind="click: createThread">Create</button>
+            
+            <div data-bind="template: { name: 'threadTemplate', foreach: openThreads}" />
+            </script>
+        
+        <script id="threadTemplate" type="text/html">
+            <!-- Called with an OpenThread -->
+            <div class="thread" style="border: 1px solid;">
+			<h3 data-bind="text: baseThread.threadName"></h3>
+			<ol data-bind="foreach: baseThread.messages">
+            <li><span data-bind="text: $data.text"></span></li>
+			</ol>
+			<input data-bind="value: newMsgText"></input>
+			<button data-bind="click: addMessage">Send</button>
+			<button data-bind="click: close">Close</button>
+            </div>
+            </script>
+        
+        
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="js/knockout-2.2.1.js"></script>
+        <script src="js/models.js"></script>
+        <script>
+            var dataModel = new App();
+            
+            ko.applyBindings(dataModel);
+            
+            $.getJSON('/login', function(user) {
+                      // On load, look up to see if the user already has an active session
+                      if (user) {
+                      dataModel.user(new User(user));
+                      }
+                      });
+            </script>
+    </body>
+	
+</html>
