@@ -9,7 +9,7 @@ An in-progress hybrid Chat/Messaging Program
 3. Install Node 0.8.20  
 	3.1. `nvm install 0.8.20`  
 4. Install [postgres.app](http://postgresapp.com/) (Standalone app for Postgres database development)  
-5. Install required libraries using npm (Node package manager)  
+5. Install required libraries using npm (Node package manager) -- npm should have been installed when you installed node  
 	5.1. `cd derp-ninja`  
 	5.2. `npm install`  
 6. You're good to go!  
