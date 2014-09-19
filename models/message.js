@@ -9,8 +9,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var MessageSchema = new Schema({
-
-
+    user: {type: String, ref: 'User'},
+    messageText: String,
+    created: {type: Date, default: new Date()}
 });
 
 module.exports = mongoose.model('Message', MessageSchema);
