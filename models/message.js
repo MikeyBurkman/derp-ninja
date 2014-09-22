@@ -14,4 +14,5 @@ var MessageSchema = new Schema({
     created: {type: Date, default: new Date()}
 });
 
-module.exports = mongoose.model('Message', MessageSchema);
+
+module.exports = MessageSchema;

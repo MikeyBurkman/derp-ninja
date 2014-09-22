@@ -3,18 +3,21 @@
 //
 //
 var mongoose = require('mongoose');
+var Message = require('./message');
 var Schema = mongoose.Schema;
 
 var ThreadSchema = new Schema({
     users: {type: [{
                 user: {type: String, ref: 'User'},
-                joined:
+                joined: {type: Date, default: new Date()},
+                createdThread: Boolean,
                 last_view: {type: String, ref: 'Message'}
                 }]
             },
-    created:
-    title:
-    tags:               
+    created: {type: Date, default: new Date()},
+    title: String,
+    tags: [{type: String}],
+    messages: [Message]    
 });
 
 module.exports = mongoose.model('Thread', ThreadSchema);
