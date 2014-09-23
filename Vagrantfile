@@ -10,8 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu/trusty64"
-  config.vm.hostname = 'derp-ninja'
+  config.vm.box = "TFDuesing/Fedora-20"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -57,10 +56,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # View the documentation for the provider you're using for more
   # information on available options.
 
+
   config.vm.network :forwarded_port, guest: 3000, host: 3001
+
+  config.vm.provision "shell", path: "puppet/manifests/puppet.sh"
 
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = 'puppet/manifests'
     puppet.module_path    = 'puppet/modules'
   end
+
 end

@@ -1,24 +1,8 @@
 
 $as_vagrant   = 'sudo -u vagrant -H bash -l -c'
-$home         = '/home/vagrant'
 
 Exec {
   path => ['/usr/sbin', '/usr/bin', '/sbin', '/bin']
-}
-
-# --- Preinstall Stage ---------------------------------------------------------
-
-stage { 'preinstall':
-  before => Stage['main']
-}
-
-class apt_get_update {
-  exec { 'apt-get -y update':
-    unless => "test -e ${home}/.rvm"
-  }
-}
-class { 'apt_get_update':
-  stage => preinstall
 }
 
 # --- Memcached ----------------------------------------------------------------
@@ -31,21 +15,7 @@ package { 'curl':
   ensure => installed
 }
 
-package { 'build-essential':
-  ensure => installed
-}
-
-package { 'git-core':
-  ensure => installed
-}
-
-# Nokogiri dependencies.
-package { ['libxml2', 'libxml2-dev', 'libxslt1-dev']:
-  ensure => installed
-}
-
-# ExecJS runtime.
-package { 'nodejs':
+package { 'node':
   ensure => latest
 }
 
@@ -56,3 +26,9 @@ package { 'mongodb':
 package { 'npm':
   ensure => latest
 }
+
+# sudo npm install -g gulp
+# sudo gem install sass
+# npm install
+# gulp serve
+# Still get an error
