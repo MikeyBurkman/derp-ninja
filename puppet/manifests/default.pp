@@ -72,5 +72,6 @@ exec { "install_gulp_deps":
 	command => "npm install",
 	cwd => "/vagrant",
 	logoutput => true,
-	require => Exec['install_gulp']
+	require => Exec['install_gulp'],
+	timeout => 900 # Can take a while to download everything
 }
