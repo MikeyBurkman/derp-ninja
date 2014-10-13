@@ -46,6 +46,8 @@ package { 'mongodb-org':
   require => Yumrepo['mongo-repo']
 }
 
+# TODO: This doesn't actually start the service... yet
+# sudo service mongod start
 service { "mongod":
 	enable => true,
 	require => Package['mongodb-org']
@@ -90,10 +92,10 @@ exec { "install_bower_deps":
 	]
 }
 
-#exec { "install_gulp_deps":
-#	command => "npm install",
-#	cwd => "/vagrant",
-#	logoutput => true,
-#	require => Exec['install_gulp'],
-#	timeout => 900 # Can take a while to download everything
-#}
+exec { "install_gulp_deps":
+	command => "npm install",
+	cwd => "/vagrant",
+	logoutput => true,
+	require => Exec['install_gulp'],
+	timeout => 900 # Can take a while to download everything
+}
