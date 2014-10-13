@@ -14,4 +14,4 @@ var server = restify.createServer();
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/derp-ninja');
 
-
+console.log('Server started');

@@ -5,6 +5,18 @@ Exec {
   path => ['/usr/sbin', '/usr/bin', '/sbin', '/bin']
 }
 
+node default {
+   include base
+}
+
+class base {
+   yumrepo { "mongo-repo":
+      baseurl => "http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/",
+      enabled => 1,
+      gpgcheck => 0
+   }
+}
+
 # --- Memcached ----------------------------------------------------------------
 
 #class { 'memcached': }
@@ -27,14 +39,24 @@ package { 'automake':
   ensure => installed
 }
 
-package { 'mongodb': 
-  ensure => latest
+# --- Mongo DB -----------------------------------------------------------------
+
+package { 'mongodb-org': 
+  ensure => latest,
+  require => Yumrepo['mongo-repo']
 }
+
+service { "mongod":
+	enable => true,
+	require => Package['mongodb-org']
+}
+
+
+# --- Node/NPM -----------------------------------------------------------------
 
 package { 'npm':
   ensure => latest
 }
-
 
 exec { "install_bower":
 	command => "npm install -g bower",
@@ -68,10 +90,10 @@ exec { "install_bower_deps":
 	]
 }
 
-exec { "install_gulp_deps":
-	command => "npm install",
-	cwd => "/vagrant",
-	logoutput => true,
-	require => Exec['install_gulp'],
-	timeout => 900 # Can take a while to download everything
-}
+#exec { "install_gulp_deps":
+#	command => "npm install",
+#	cwd => "/vagrant",
+#	logoutput => true,
+#	require => Exec['install_gulp'],
+#	timeout => 900 # Can take a while to download everything
+#}
