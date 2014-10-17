@@ -23,9 +23,9 @@ class base {
 
 # --- Packages -----------------------------------------------------------------
 
-package { 'curl':
-  ensure => installed
-}
+#package { 'curl':
+#  ensure => installed
+#}
 
 package { 'git':
   ensure => latest
@@ -35,9 +35,9 @@ package { 'make':
   ensure => installed
 }
 
-package { 'automake':
-  ensure => installed
-}
+#package { 'automake':
+#  ensure => installed
+#}
 
 # --- Mongo DB -----------------------------------------------------------------
 
@@ -50,6 +50,7 @@ package { 'mongodb-org':
 # sudo service mongod start
 service { "mongod":
 	enable => true,
+	ensure => running,
 	require => Package['mongodb-org']
 }
 
