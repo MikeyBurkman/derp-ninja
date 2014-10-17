@@ -46,8 +46,6 @@ package { 'mongodb-org':
   require => Yumrepo['mongo-repo']
 }
 
-# TODO: This doesn't actually start the service... yet
-# sudo service mongod start
 service { "mongod":
 	enable => true,
 	ensure => running,
