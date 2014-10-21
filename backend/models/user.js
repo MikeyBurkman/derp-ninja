@@ -8,6 +8,7 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema({
     _id: String,
     displayName: String,
+    password: String,
     created: {type: Date, default: new Date()}
 });
 

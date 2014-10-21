@@ -17,7 +17,7 @@ var ThreadSchema = new Schema({
     created: {type: Date, default: new Date()},
     title: String,
     tags: [{type: String}],
-    messages: [Message]    
+    messages: {type:[Message], default: []}    
 });
 
 module.exports = mongoose.model('Thread', ThreadSchema);
