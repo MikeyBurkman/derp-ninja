@@ -61,6 +61,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell", path: "puppet/manifests/puppet.sh"
 
+  # So we start in /vagrant when logging in
+  config.vm.provision "shell", path: "puppet/manifests/cdVagrant.sh"
+
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = 'puppet/manifests'
     puppet.module_path    = 'puppet/modules'
