@@ -4,7 +4,12 @@
   "dependencies": {
     "mongoose": "~3.8.16",
     "restify": "~2.8.2",
-    "q": "1.1.x"
+    "restify-cookies": "0.1.x",
+    "passport": "0.2.x",
+    "passport-local": "1.0.x",
+    "q": "1.1.x",
+    "sugar": "1.4.x",
+    "node-uuid": "1.4.x"
   },
   "devDependencies": {
     "gulp": "^3.6.0",

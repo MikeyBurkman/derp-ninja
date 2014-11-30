@@ -1,12 +1,14 @@
 'use strict';
 
+ // TODO: Also watch and restart backend on changes to backend/**/*.js
+
 var gulp = require('gulp');
 
 var browserSync = require('browser-sync');
 var httpProxy = require('http-proxy');
 
 /* This configuration allow you to configure browser sync to proxy your backend */
-var proxyTarget = 'http://localhost:3000'; // The location of your backend
+var proxyTarget = 'http://localhost:3001'; // The location of your backend
 var proxyApiPrefix = 'api'; // The element in the URL which differentiate between API request and static file request
 
 var proxy = httpProxy.createProxyServer({
@@ -15,6 +17,7 @@ var proxy = httpProxy.createProxyServer({
 
 function proxyMiddleware(req, res, next) {
   if (req.url.indexOf(proxyApiPrefix) !== -1) {
+    console.log('Browser-Sync Proxying: ', req.url);
     proxy.web(req, res);
   } else {
     next();
