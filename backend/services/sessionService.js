@@ -2,6 +2,7 @@
 module.exports = {
     init: init,
     login: login,
+    logout: logout,
     isLoggedIn: isLoggedIn,
     currentSession: currentSession,
     currentUser: currentUser,
@@ -12,6 +13,8 @@ module.exports = {
 ////////////////////
 
 // Could break out authentication and sessions into separate services
+
+var logger = require('../utils/logger');
 
 //set up the basic session storage we are using
 var sessionStorage = {};
@@ -25,16 +28,16 @@ var User = require('../models/user');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy(function(username, password, done){
-    console.log('Looking up user: ', username);
+    logger.info('Looking up user: ', username);
     User.findOne({'_id': username}).exec()
-        .then(function(user){
+        .then(function(user){;
             if(user.password === password){
-                done(null, user);
+               return done(null, user);
             } else {
-                done(null, false, {message: 'Incorrect password'});
+                return done(null, false, {message: 'Incorrect password'});
             }
         }, function(err){
-            done(null, false, {message: 'bad username'});
+            return done(null, false, {message: 'bad username'});
         });
 }));
 
@@ -55,6 +58,13 @@ function currentSession(req) {
     }
 };
 
+function removeSession(req) {
+    var sessionId = req.cookies.session;
+    if (sessionId) {
+        delete sessionStorage[sessionId];
+    }
+}
+
 function sessionAttr(req, attr) {
     var session = currentSession(req) || {};
     return session[attr];
@@ -63,7 +73,7 @@ function sessionAttr(req, attr) {
 function login(req, res) {
     var sessionId = uuid.v1();
     var session = sessionStorage[sessionId] = {
-        user: req.user._id
+        user: req.user
     }
     req.cookies.session = session;
     res.setCookie('session', sessionId);  
@@ -72,6 +82,11 @@ function login(req, res) {
 function isLoggedIn(req) {
     return !!sessionAttr(req, 'user');
 };
+
+function logout(req) {
+    logger.info('logging user out');
+    removeSession(req);
+}
 
 function currentUser(req) {
     return sessionAttr(req, 'user');

@@ -6,6 +6,9 @@
 require('sugar');
 var restify = require('restify');
 
+//logger
+var logger = require('./utils/logger');
+
 // TODO: Call only services, no daos
 var threadDao = require('./daos/threadDao');
 var messageService = require('./services/messageService');
@@ -46,13 +49,14 @@ router.post('/user', function(req, res) {
     user.save(function(err, user){
         if(err){
              res.json({message: 'could not save user'});
-             console.log('error saving using', err);
+             logger.warn('error saving using', err);
         } else {
         	// TODO: Are we automatically logging in the user after this?
         	// Might be better to forward to login
         	// passport.authenticate('local');
         	sessionService.authenticateUserMW();
         	sessionService.login(req, res);
+            logger.info('successfully created a new user for %s', user._id);
             res.json({message: 'user created'});
         }
 
@@ -62,21 +66,25 @@ router.post('/user', function(req, res) {
 
 
 //All the login paths
-router.post('/login', function(req, res){
-    console.log(req.user._id + " has been successfully authenticated, creating session");
+router.post('/login', function(req, res) {
+    logger.info('%s is attempting a login', req.params.username);
     sessionService.login(req, res);
-    res.send(req.user);
+    res.json({user: req.user._id, message: 'authenticated'});
 }, {login: true});
 
 // TODO: Pretty sure we can just remove {open: true} and get the same effect...
 router.get('/login', function(req, res){
-	if (sessionSerivce.isLoggedIn()) {
+	if (sessionService.isLoggedIn(req)) {
 		res.json({user: 'authenticated'});
 	} else {
 		res.send(401);
 	}
 }, {open: true});
 
+router.get('/logout', function(req, res){
+    sessionService.logout(req);
+    res.json({user: 'logged out'});
+}, {open: true});
 
 //Message threads
 
@@ -100,6 +108,16 @@ router.post('/threads', function(req, res, session){
 	    })
 	    .catch(router.serverError(res));
 
+});
+
+//get all threads for a user
+router.get('/threads', function(req, res, session) {
+    threadDao
+        .findThreadsByUser(session.getUser()._id)
+        .then(function(threads){
+            res.send(threads);
+        })
+        .catch(router.serverError(res));
 });
 
 // Creae message
@@ -128,7 +146,7 @@ router.get('/thread/:threadId/messages', function(req, res, session) {
 	var threadId = req.params.threadId;
 	var ts = req.query.ts || 0;
 
-	console.log('getting messages for thread: ', threadId, ts);
+	logger.info('getting messages for thread: ', threadId, ts);
 
 	messageService
 		.getMessages(threadId, ts)

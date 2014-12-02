@@ -1,3 +1,5 @@
+var logger = require('../utils/logger');
+
 
 module.exports = function(server) {
 
@@ -32,7 +34,7 @@ module.exports = function(server) {
 		var endpoint = createRoutePath(url);
 
 		var fn = function(req, res) {
-			console.log('Got request to: ', [method, endpoint]);
+			logger.info('Got request to: ', [method, endpoint]);
 			var sess = new Session(sessionService.currentSession(req));
 			return cb(req, res, sess);
 		};
@@ -49,7 +51,7 @@ module.exports = function(server) {
 		// TODO: Add authorization here based on roles passed to opts
 
 		var args = [endpoint, middleware, fn].flatten();
-		console.log('Creating route: ', [method, endpoint, opts]);
+		logger.info('Creating route: ', [method, endpoint, opts]);
 		return server[method].apply(server, args);
 		
 	};
@@ -57,7 +59,7 @@ module.exports = function(server) {
 	// Usage service.something().then(...).catch(serverError(res));
 	function serverError(res) {
 		return function(err) {
-			console.log('error: ', err);
+			logger.err('error: ', err);
 			res.send(500);
 		};
 	};

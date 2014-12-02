@@ -1,0 +1,218 @@
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1339,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T00:41:00.150Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1339,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T00:41:00.153Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1339,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T00:41:00.154Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1339,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T00:41:00.154Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1339,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T00:41:00.154Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1339,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T00:41:00.154Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1339,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T00:41:00.154Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1339,"level":30,"msg":"Server started on port:  3001","time":"2014-12-02T00:41:00.158Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1350,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T00:41:50.342Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1350,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T00:41:50.345Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1350,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T00:41:50.346Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1350,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T00:41:50.346Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1350,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T00:41:50.346Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1350,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T00:41:50.346Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1350,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T00:41:50.346Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1350,"level":30,"msg":"Got request to:  [ 'get', '/api/login' ]","time":"2014-12-02T00:45:42.020Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1350,"level":30,"msg":"Got request to:  [ 'get', '/api' ]","time":"2014-12-02T00:45:53.305Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1350,"level":30,"msg":"Got request to:  [ 'post', '/api/user' ]","time":"2014-12-02T00:47:49.356Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1350,"level":30,"msg":"Got request to:  [ 'post', '/api/user' ]","time":"2014-12-02T00:50:11.853Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1420,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T00:56:05.919Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1420,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T00:56:05.922Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1420,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T00:56:05.924Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1420,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T00:56:05.924Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1420,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T00:56:05.924Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1420,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T00:56:05.924Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1420,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T00:56:05.924Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1420,"level":30,"msg":"Got request to:  [ 'post', '/api/user' ]","time":"2014-12-02T00:56:11.082Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1420,"level":40,"msg":"error saving using { [MongoError: insertDocument :: caused by :: 11000 E11000 duplicate key error index: derp-ninja.users.$_id_  dup key: { : \"mkalish\" }]\n  name: 'MongoError',\n  code: 11000,\n  err: 'insertDocument :: caused by :: 11000 E11000 duplicate key error index: derp-ninja.users.$_id_  dup key: { : \"mkalish\" }' }","time":"2014-12-02T00:56:11.102Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1420,"level":30,"msg":"Got request to:  [ 'post', '/api/user' ]","time":"2014-12-02T00:57:11.878Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1461,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T00:57:50.072Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1461,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T00:57:50.077Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1461,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T00:57:50.077Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1461,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T00:57:50.077Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1461,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T00:57:50.077Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1461,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T00:57:50.077Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1461,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T00:57:50.077Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1461,"level":30,"msg":"Got request to:  [ 'post', '/api/user' ]","time":"2014-12-02T00:57:55.988Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1461,"level":30,"msg":"Got request to:  [ 'get', '/api/login' ]","time":"2014-12-02T00:59:36.886Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1473,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T00:59:53.506Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1473,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T00:59:53.511Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1473,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T00:59:53.511Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1473,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T00:59:53.512Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1473,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T00:59:53.512Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1473,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T00:59:53.512Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1473,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T00:59:53.513Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1473,"level":30,"msg":"Got request to:  [ 'post', '/api/user' ]","time":"2014-12-02T01:00:26.309Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1473,"level":30,"msg":"successfully created a new user for mkalish","time":"2014-12-02T01:00:26.320Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1473,"level":30,"msg":"Got request to:  [ 'get', '/api/login' ]","time":"2014-12-02T01:00:30.293Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1473,"level":30,"msg":"Got request to:  [ 'get', '/api/login' ]","time":"2014-12-02T01:04:32.490Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1505,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T01:05:35.452Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1505,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T01:05:35.459Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1505,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T01:05:35.459Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1505,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T01:05:35.459Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1505,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T01:05:35.459Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1505,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:05:35.459Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1505,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:05:35.460Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1505,"level":30,"msg":"Got request to:  [ 'post', '/api/user' ]","time":"2014-12-02T01:05:43.692Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1505,"level":30,"msg":"successfully created a new user for mkalish","time":"2014-12-02T01:05:43.703Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1505,"level":30,"msg":"Got request to:  [ 'get', '/api/login' ]","time":"2014-12-02T01:05:47.297Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1517,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T01:07:55.772Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1517,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T01:07:55.775Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1517,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T01:07:55.776Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1517,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T01:07:55.776Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1517,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T01:07:55.777Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1517,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:07:55.777Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1517,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:07:55.777Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1517,"level":30,"msg":"Got request to:  [ 'post', '/api/user' ]","time":"2014-12-02T01:08:01.105Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1517,"level":30,"msg":"successfully created a new user for mkalish","time":"2014-12-02T01:08:01.117Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1517,"level":30,"msg":"Got request to:  [ 'get', '/api/login' ]","time":"2014-12-02T01:08:11.108Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1529,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T01:08:55.600Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1529,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T01:08:55.603Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1529,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T01:08:55.606Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1529,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T01:08:55.606Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1529,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T01:08:55.606Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1529,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:08:55.606Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1529,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:08:55.606Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1529,"level":30,"msg":"Got request to:  [ 'post', '/api/user' ]","time":"2014-12-02T01:09:00.912Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1529,"level":30,"msg":"successfully created a new user for mkalish","time":"2014-12-02T01:09:00.923Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1529,"level":30,"msg":"Got request to:  [ 'get', '/api/login' ]","time":"2014-12-02T01:09:04.657Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1546,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T01:20:46.618Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1546,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T01:20:46.621Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1546,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T01:20:46.622Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1546,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T01:20:46.622Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1546,"level":30,"msg":"Creating route:  [ 'get', '/api/logout', { open: true } ]","time":"2014-12-02T01:20:46.622Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1546,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T01:20:46.622Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1546,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:20:46.622Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1546,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:20:46.623Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1546,"level":30,"msg":"Got request to:  [ 'post', '/api/user' ]","time":"2014-12-02T01:20:53.393Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1546,"level":30,"msg":"successfully created a new user for mkalish","time":"2014-12-02T01:20:53.407Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1546,"level":30,"msg":"Got request to:  [ 'get', '/api/login' ]","time":"2014-12-02T01:20:57.561Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1546,"level":30,"msg":"Got request to:  [ 'get', '/api/logout' ]","time":"2014-12-02T01:21:02.343Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1559,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T01:22:02.132Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1559,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T01:22:02.138Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1559,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T01:22:02.138Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1559,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T01:22:02.138Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1559,"level":30,"msg":"Creating route:  [ 'get', '/api/logout', { open: true } ]","time":"2014-12-02T01:22:02.138Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1559,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T01:22:02.139Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1559,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:22:02.139Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1559,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:22:02.139Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1559,"level":30,"msg":"Got request to:  [ 'post', '/api/login' ]","time":"2014-12-02T01:22:37.480Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1559,"level":30,"msg":"mkalish has been successfully authenticated, creating session","time":"2014-12-02T01:22:37.480Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13049,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T01:28:58.177Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13049,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T01:28:58.180Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13049,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T01:28:58.180Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13049,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T01:28:58.180Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13049,"level":30,"msg":"Creating route:  [ 'get', '/api/logout', { open: true } ]","time":"2014-12-02T01:28:58.180Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13049,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T01:28:58.180Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13049,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:28:58.180Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13049,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:28:58.180Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13049,"level":30,"msg":"Got request to:  [ 'post', '/api/login' ]","time":"2014-12-02T01:29:46.591Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13087,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T01:30:22.785Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13087,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T01:30:22.788Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13087,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T01:30:22.788Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13087,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T01:30:22.788Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13087,"level":30,"msg":"Creating route:  [ 'get', '/api/logout', { open: true } ]","time":"2014-12-02T01:30:22.790Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13087,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T01:30:22.790Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13087,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:30:22.790Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13087,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:30:22.790Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13087,"level":30,"msg":"Got request to:  [ 'post', '/api/login' ]","time":"2014-12-02T01:30:40.558Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13124,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T01:31:17.463Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13124,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T01:31:17.467Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13124,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T01:31:17.468Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13124,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T01:31:17.468Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13124,"level":30,"msg":"Creating route:  [ 'get', '/api/logout', { open: true } ]","time":"2014-12-02T01:31:17.468Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13124,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T01:31:17.468Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13124,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:31:17.469Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13124,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:31:17.469Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13124,"level":30,"msg":"Got request to:  [ 'post', '/api/login' ]","time":"2014-12-02T01:31:33.939Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13164,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T01:32:59.751Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13164,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T01:32:59.755Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13164,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T01:32:59.756Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13164,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T01:32:59.756Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13164,"level":30,"msg":"Creating route:  [ 'get', '/api/logout', { open: true } ]","time":"2014-12-02T01:32:59.756Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13164,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T01:32:59.758Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13164,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:32:59.758Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13164,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:32:59.758Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13164,"level":30,"msg":"Got request to:  [ 'post', '/api/login' ]","time":"2014-12-02T01:33:10.089Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13200,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T01:35:13.328Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13200,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T01:35:13.331Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13200,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T01:35:13.332Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13200,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T01:35:13.332Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13200,"level":30,"msg":"Creating route:  [ 'get', '/api/logout', { open: true } ]","time":"2014-12-02T01:35:13.332Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13200,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T01:35:13.333Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13200,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:35:13.333Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13200,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:35:13.333Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13200,"level":30,"msg":"Got request to:  [ 'post', '/api/login' ]","time":"2014-12-02T01:35:29.069Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13374,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T01:52:28.558Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13374,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T01:52:28.562Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13374,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T01:52:28.563Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13374,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T01:52:28.563Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13374,"level":30,"msg":"Creating route:  [ 'get', '/api/logout', { open: true } ]","time":"2014-12-02T01:52:28.563Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13374,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T01:52:28.563Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13374,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:52:28.563Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13374,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:52:28.563Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13411,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T01:53:49.533Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13411,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T01:53:49.536Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13411,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T01:53:49.537Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13411,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T01:53:49.537Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13411,"level":30,"msg":"Creating route:  [ 'get', '/api/logout', { open: true } ]","time":"2014-12-02T01:53:49.537Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13411,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T01:53:49.537Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13411,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:53:49.537Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13411,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:53:49.537Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13411,"level":30,"msg":"Looking up user:  mkalish","time":"2014-12-02T01:53:54.058Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13411,"level":30,"msg":"Got request to:  [ 'post', '/api/login' ]","time":"2014-12-02T01:53:54.067Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13423,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T01:55:41.972Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13423,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T01:55:41.975Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13423,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T01:55:41.975Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13423,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T01:55:41.975Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13423,"level":30,"msg":"Creating route:  [ 'get', '/api/logout', { open: true } ]","time":"2014-12-02T01:55:41.975Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13423,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T01:55:41.975Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13423,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:55:41.975Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13423,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:55:41.975Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13423,"level":30,"msg":"Looking up user:  mkalish","time":"2014-12-02T01:55:56.878Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13423,"level":30,"msg":"Got request to:  [ 'post', '/api/login' ]","time":"2014-12-02T01:55:56.890Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13461,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T01:56:28.931Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13461,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T01:56:28.934Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13461,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T01:56:28.934Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13461,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T01:56:28.934Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13461,"level":30,"msg":"Creating route:  [ 'get', '/api/logout', { open: true } ]","time":"2014-12-02T01:56:28.936Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13461,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T01:56:28.936Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13461,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:56:28.936Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13461,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T01:56:28.936Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13461,"level":30,"msg":"Looking up user:  mkalish","time":"2014-12-02T01:56:34.654Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":13461,"level":30,"msg":"Got request to:  [ 'post', '/api/login' ]","time":"2014-12-02T01:56:34.665Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1293,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T02:11:15.028Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1293,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T02:11:15.031Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1293,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T02:11:15.032Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1293,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T02:11:15.032Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1293,"level":30,"msg":"Creating route:  [ 'get', '/api/logout', { open: true } ]","time":"2014-12-02T02:11:15.032Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1293,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T02:11:15.032Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1293,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T02:11:15.032Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1293,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T02:11:15.032Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1293,"level":30,"msg":"Looking up user:  mkalish","time":"2014-12-02T02:12:02.310Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1293,"level":30,"msg":"Got request to:  [ 'post', '/api/login' ]","time":"2014-12-02T02:12:02.324Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1293,"level":30,"msg":"mkalish is attempting a login","time":"2014-12-02T02:12:02.325Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1293,"level":30,"msg":"Got request to:  [ 'post', '/api/threads' ]","time":"2014-12-02T02:12:20.551Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1357,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T02:16:22.764Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1357,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T02:16:22.767Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1357,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T02:16:22.768Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1357,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T02:16:22.768Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1357,"level":30,"msg":"Creating route:  [ 'get', '/api/logout', { open: true } ]","time":"2014-12-02T02:16:22.768Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1357,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T02:16:22.768Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1357,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T02:16:22.768Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1357,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T02:16:22.768Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1357,"level":30,"msg":"Looking up user:  mkalish","time":"2014-12-02T02:16:36.458Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1357,"level":30,"msg":"Got request to:  [ 'post', '/api/login' ]","time":"2014-12-02T02:16:36.468Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1357,"level":30,"msg":"mkalish is attempting a login","time":"2014-12-02T02:16:36.469Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1357,"level":30,"msg":"Got request to:  [ 'post', '/api/threads' ]","time":"2014-12-02T02:16:39.784Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1357,"level":30,"msg":"Got request to:  [ 'post', '/api/threads' ]","time":"2014-12-02T02:31:45.534Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1407,"level":30,"msg":"Creating route:  [ 'get', '/api', { open: true } ]","time":"2014-12-02T02:31:58.640Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1407,"level":30,"msg":"Creating route:  [ 'post', '/api/user', { open: true } ]","time":"2014-12-02T02:31:58.644Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1407,"level":30,"msg":"Creating route:  [ 'post', '/api/login', { login: true } ]","time":"2014-12-02T02:31:58.644Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1407,"level":30,"msg":"Creating route:  [ 'get', '/api/login', { open: true } ]","time":"2014-12-02T02:31:58.644Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1407,"level":30,"msg":"Creating route:  [ 'get', '/api/logout', { open: true } ]","time":"2014-12-02T02:31:58.644Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1407,"level":30,"msg":"Creating route:  [ 'post', '/api/threads', {} ]","time":"2014-12-02T02:31:58.644Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1407,"level":30,"msg":"Creating route:  [ 'get', '/api/threads', {} ]","time":"2014-12-02T02:31:58.644Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1407,"level":30,"msg":"Creating route:  [ 'post', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T02:31:58.644Z","v":0}
+{"name":"derp-ninja-messaging","hostname":"localhost.localdomain","pid":1407,"level":30,"msg":"Creating route:  [ 'get', '/api/thread/:threadId/messages', {} ]","time":"2014-12-02T02:31:58.644Z","v":0}

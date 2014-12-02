@@ -25,7 +25,7 @@ function createThread(userId, thread) {
     t.title = thread.title;
     t.tags = thread.tags;
     
-    thread.save(function(err, thread){
+    t.save(function(err, thread){
         if(err){
             defer.reject(err);
         } else {
@@ -34,6 +34,12 @@ function createThread(userId, thread) {
     }); 
 
     return defer.promise;
+};
+
+function findThreadsByUser(userId) {
+
+    var defer = q.defer();
+        
 };
 
 function createMessage(threadId, message) {
