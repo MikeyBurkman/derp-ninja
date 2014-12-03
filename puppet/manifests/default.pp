@@ -73,6 +73,13 @@ exec { "install_gulp":
 	require => Package['npm']
 }
 
+exec { "install_bunyan":
+	command => "npm install -g bunyan",
+	cwd => "/vagrant",
+	logoutput => true,
+	require => Package['npm']
+}
+
 exec { "install_sass":
 	# Note: Gem was installed because Puppet already requires Ruby
 	command => "gem install sass --no-rdoc --no-ri",
