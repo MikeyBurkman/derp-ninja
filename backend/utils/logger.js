@@ -2,8 +2,12 @@
 // Logger utility class
 
 var bunyan = require('bunyan');
+
+var logSource = true; // Logging source is slow, will want to turn this off eventually
+
 var logger = bunyan.createLogger({
     name: 'derp-ninja-messaging',
+    src: logSource,
     streams: [
     {
         type: 'rotating-file',
