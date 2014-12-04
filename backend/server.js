@@ -35,6 +35,8 @@ sessionService.init(server);
 var mongoose = require('mongoose');
 mongoose.connect(mongoEndpoint);
 
+//Iinitialize the thread cache
+var threadCache = require('./services/threadCacheService')();
 
 router.get(undefined, function(req, res){
     res.send({message: 'this is this the base url for this api, if you are getting this it is probably a mistake'});
@@ -89,34 +91,27 @@ router.get('/logout', function(req, res){
 
 //Message threads
 
+var threadService = require('./services/threadService')(threadCache);
+
 // Create Thread
 router.post('/threads', function(req, res, session){
-    var userEntry = {
-    	user: session.getUser()._id,
-    	createdThread: true
-    };
-    
-    var thread = {
-    	users: [userEntry],
-    	title: req.body.title,
-    	tags: req.body.tags || []
-    };
 
-    threadDao
-    	.createThread(userEntry, thread)
-    	.then(function(thread) {
-	    	res.send(thread);
-	    })
-	    .catch(router.serverError(res));
+    threadService
+        .createThread(session.getUser()._id, req.body.title, req.body.tags)
+        .then(function(thread) {
+            res.send(201, thread._id);
+        })
+        .catch(router.serverError(res));
+
 
 });
 
 //get all threads for a user
 router.get('/threads', function(req, res, session) {
-    threadDao
-        .findThreadsByUser(session.getUser()._id)
+    threadService
+        .getThreadsForUser(session.getUser()._id)
         .then(function(threads){
-            res.send(threads);
+            res.send(201, threads);
         })
         .catch(router.serverError(res));
 });
