@@ -14,7 +14,7 @@ module.exports = {
 
 // Could break out authentication and sessions into separate services
 
-var logger = require('../utils/logger');
+var logger = require('../utils/logger')(__filename);
 
 //set up the basic session storage we are using
 var sessionStorage = {};
