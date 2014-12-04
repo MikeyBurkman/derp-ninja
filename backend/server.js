@@ -7,7 +7,7 @@ require('sugar');
 var restify = require('restify');
 
 //logger
-var logger = require('./utils/logger');
+var logger = require('./utils/logger')(__filename);
 
 // TODO: Call only services, no daos
 var threadDao = require('./daos/threadDao');
@@ -24,6 +24,7 @@ server.use(restify.bodyParser());
 var cookieParser = require('restify-cookies');
 server.use(cookieParser.parse);
 server.use(restify.queryParser());
+server.use(restify.requestLogger());
 
 var Router = require('./routes/Router');
 var router = new Router(server);
@@ -161,4 +162,5 @@ router.get('/thread/:threadId/messages', function(req, res, session) {
 
 server.listen(restServicesPort, function(){
     console.log('Server started on port: ', restServicesPort);
+    logger.info('Server started on port: ', restServicesPort);
 });
