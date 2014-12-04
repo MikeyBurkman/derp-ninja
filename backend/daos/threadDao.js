@@ -2,15 +2,15 @@
 module.exports = {
 	createThread: createThread,
 	createMessage: createMessage,
-	lookupMessages: lookupMessages
+	lookupMessages: lookupMessages,
+    findThreadsByUser: findThreadsByUser
 };
 
 var q = require('q');
 var MessageThread = require('../models/thread');
 var Message = require('../models/message');
 
-function createThread(userId, thread) {
-
+function createThread(userId, title, tags) {
 	var defer = q.defer();
 
 	var userEntry = {
@@ -22,8 +22,8 @@ function createThread(userId, thread) {
     
     t.users = [];
     t.users.push(userEntry);
-    t.title = thread.title;
-    t.tags = thread.tags;
+    t.title = title
+    t.tags = tags;
     
     t.save(function(err, thread){
         if(err){
@@ -37,9 +37,9 @@ function createThread(userId, thread) {
 };
 
 function findThreadsByUser(userId) {
-
-    var defer = q.defer();
-        
+    return MessageThread
+            .find({'users.user':userId})
+           .exec(); 
 };
 
 function createMessage(threadId, message) {
