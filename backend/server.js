@@ -107,7 +107,7 @@ router.post('/threads', function(req, res, session){
 });
 
 //get all threads for a user
-router.get('/threads', function(req, res, session) {
+router.get('/thread', function(req, res, session) {
     threadService
         .getThreadsForUser(session.getUser()._id)
         .then(function(threads){

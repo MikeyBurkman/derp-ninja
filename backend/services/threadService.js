@@ -27,19 +27,19 @@ function threadService(cache) {
     }
 
     function addUserToThread(userId, threadId) {
-
+        
     }
-
+    
     function getThreadsForUser(userId) {
         return threadDao
                 .findThreadsByUser(userId)
                 .then(function(threads){
-                    if(threads.length == 0) return q.reject({empty:userId+' is in no threads'});
-                    return threads;
+                    if(threads.length == 0) return q.reject({message: 'user ' + userId + ' is in no threads'});
+                    return q.resolve(threads);
                 })
                 .catch(function(err){
-                    return q.reject(err);
-                });
+                    return q.reject(err);      
+                });            
     }
 
     return {

@@ -37,9 +37,18 @@ function createThread(userId, title, tags) {
 };
 
 function findThreadsByUser(userId) {
-    return MessageThread
-            .find({'users.user':userId})
-           .exec(); 
+    var defer = q.defer();
+        
+    MessageThread
+        .find({'users.user':userId})
+        .exec()
+        .then(function(threads){
+            defer.resolve(threads); 
+        }, function(err){
+            defer.reject(err); 
+        }); 
+
+    return defer.promise;
 };
 
 function createMessage(threadId, message) {
