@@ -70,7 +70,7 @@ function init(imports) {
 
     //MONGOOSE SETUP
     var mongoose = require('mongoose');
-    //mongoose.connect(mongoEndpoint);
+    mongoose.connect(mongoEndpoint);
 
     router.get(undefined, function(req, res){
         res.send({message: 'this is this the base url for this api, if you are getting this it is probably a mistake'});
