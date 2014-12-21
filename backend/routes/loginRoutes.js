@@ -1,1 +1,3 @@
-loginRoutes.js
+module.exports = {
+	init: function() { }
+}

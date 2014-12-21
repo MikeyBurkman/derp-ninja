@@ -1,1 +1,3 @@
-messageRoutes.js
+module.exports = {
+	init: function() { }
+}

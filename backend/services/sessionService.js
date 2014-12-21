@@ -1,115 +1,129 @@
 
 module.exports = {
-    init: init,
-    login: login,
-    logout: logout,
-    isLoggedIn: isLoggedIn,
-    currentSession: currentSession,
-    currentUser: currentUser,
-    requireAuthMW: requireAuthMW,
-    authenticateUserMW: authenticateUserMW
-};
+    import: [{
+        id: 'utils.logger',
+        as: 'log'
+    }, {
+        id: 'models.user',
+        as: 'user'
+    }],
+    init: init
+}
 
-////////////////////
-
-// Could break out authentication and sessions into separate services
-
-var logger = require('../utils/logger')(__filename);
-
-//set up the basic session storage we are using
-var sessionStorage = {};
-
-var uuid = require('node-uuid');
-
-//MODELS
-var User = require('../models/user');
-
-//SET UP PASSPORT FOR AUTHENTICATION
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-passport.use(new LocalStrategy(function(username, password, done){
-    logger.info('Looking up user: ', username);
-    User.findOne({'_id': username}).exec()
-        .then(function(user){;
-            if(user.password === password){
-               return done(null, user);
-            } else {
-                return done(null, false, {message: 'Incorrect password'});
-            }
-        }, function(err){
-            return done(null, false, {message: 'bad username'});
-        });
-}));
+var uuid = require('node-uuid');
 
-passport.serializeUser(function(user, done){
-    done(null, user);
-});
+function init(imports) {
 
-passport.deserializeUser(function(user, done){
-    done(null, user);
-});
+    return {
+        init: init,
+        login: login,
+        logout: logout,
+        isLoggedIn: isLoggedIn,
+        currentSession: currentSession,
+        currentUser: currentUser,
+        requireAuthMW: requireAuthMW,
+        authenticateUserMW: authenticateUserMW
+    };
 
-function currentSession(req) {
-    var sessionId = req.cookies.session;
-    if (sessionId) {
-        return sessionStorage[sessionId];
-    } else {
-        return undefined;
-    }
-};
+    ////////////////////
 
-function removeSession(req) {
-    var sessionId = req.cookies.session;
-    if (sessionId) {
-        delete sessionStorage[sessionId];
-    }
-}
+    // Could break out authentication and sessions into separate services
 
-function sessionAttr(req, attr) {
-    var session = currentSession(req) || {};
-    return session[attr];
-};
+    var logger = imports.log(__filename);
 
-function login(req, res) {
-    var sessionId = uuid.v1();
-    var session = sessionStorage[sessionId] = {
-        user: req.user
-    }
-    req.cookies.session = session;
-    res.setCookie('session', sessionId);  
-};
+    //set up the basic session storage we are using
+    var sessionStorage = {};
 
-function isLoggedIn(req) {
-    return !!sessionAttr(req, 'user');
-};
+    //MODELS
+    var User = imports.user;
 
-function logout(req) {
-    logger.info('logging user out');
-    removeSession(req);
-}
+    //SET UP PASSPORT FOR AUTHENTICATION
+    passport.use(new LocalStrategy(function(username, password, done){
+        logger.info('Looking up user: ', username);
+        User.findOne({'_id': username}).exec()
+            .then(function(user){;
+                if(user.password === password){
+                   return done(null, user);
+                } else {
+                    return done(null, false, {message: 'Incorrect password'});
+                }
+            }, function(err){
+                return done(null, false, {message: 'bad username'});
+            });
+    }));
 
-function currentUser(req) {
-    return sessionAttr(req, 'user');
-};
+    passport.serializeUser(function(user, done){
+        done(null, user);
+    });
 
-function init(server) {
-    server.use(passport.initialize());
-    server.use(passport.session());
-};
+    passport.deserializeUser(function(user, done){
+        done(null, user);
+    });
 
-function authenticateUserMW() {
-    return passport.authenticate('local');
-};
-
-function requireAuthMW() {
-    return function(req, res, next) {
-        console.log('Verifying user is logged in...');
-        // TODO: if isLoggedIn(req)?
-        if (currentSession(req)) {
-            next();
+    function currentSession(req) {
+        var sessionId = req.cookies.session;
+        if (sessionId) {
+            return sessionStorage[sessionId];
         } else {
-            res.send(401);
+            return undefined;
         }
     };
-};
+
+    function removeSession(req) {
+        var sessionId = req.cookies.session;
+        if (sessionId) {
+            delete sessionStorage[sessionId];
+        }
+    }
+
+    function sessionAttr(req, attr) {
+        var session = currentSession(req) || {};
+        return session[attr];
+    };
+
+    function login(req, res) {
+        var sessionId = uuid.v1();
+        var session = sessionStorage[sessionId] = {
+            user: req.user
+        }
+        req.cookies.session = session;
+        res.setCookie('session', sessionId);  
+    };
+
+    function isLoggedIn(req) {
+        return !!sessionAttr(req, 'user');
+    };
+
+    function logout(req) {
+        logger.info('logging user out');
+        removeSession(req);
+    }
+
+    function currentUser(req) {
+        return sessionAttr(req, 'user');
+    };
+
+    function init(server) {
+        server.use(passport.initialize());
+        server.use(passport.session());
+    };
+
+    function authenticateUserMW() {
+        return passport.authenticate('local');
+    };
+
+    function requireAuthMW() {
+        return function(req, res, next) {
+            console.log('Verifying user is logged in...');
+            // TODO: if isLoggedIn(req)?
+            if (currentSession(req)) {
+                next();
+            } else {
+                res.send(401);
+            }
+        };
+    };
+}
 
