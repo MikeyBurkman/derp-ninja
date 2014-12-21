@@ -1,5 +1,5 @@
 
-var eggnog = require('../../eggnog');
+var eggnog = require('eggnog');
 
 var context = eggnog.newContext();
 context.scanForFiles(__dirname);
