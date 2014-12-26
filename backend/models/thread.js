@@ -3,17 +3,17 @@
 //
 
 module.exports = {
-    import: [{
-        id: 'models.message',
-        as: 'message'
-    }],
+    import: [
+        'models.message'
+    ],
     init: init
 }
 
 function init(imports) {
 
+    var Message = imports.get('models.message');
+    
     var mongoose = require('mongoose');
-    var Message = imports.message;
     var Schema = mongoose.Schema;
 
     var ThreadSchema = new Schema({

@@ -1,20 +1,17 @@
 
 module.exports = {
-    import: [{
-        id: 'models.thread',
-        as: 'thread'
-    }, {
-        id: 'models.message',
-        as: 'message'
-    }],
+    import: [
+        'models.thread',
+        'models.message'
+    ],
     init: init
 }
 
 function init(imports) {
 
     var q = require('q');
-    var MessageThread = imports.thread;
-    var Message = imports.message;
+    var MessageThread = imports.get('models.thread');
+    var Message = imports.get('models.message');
 
     return {
         createThread: createThread,

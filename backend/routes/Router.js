@@ -1,23 +1,18 @@
 
 module.exports = {
-	import: [{
-		id: 'utils.logger',
-		as: 'log'
-	}, {
-		id: 'services.sessionService',
-		as: 'sessionService'
-	}, {
-		id: 'models.session',
-		as: 'session'
-	}],
+	import: [
+		'utils.logger',
+		'services.sessionService',
+		'models.session'
+	],
 	init: init
 }
 
 function init(imports) {
 
-	var logger = imports.log(__filename);
-	var sessionService = imports.sessionService;
-	var Session = imports.session;
+	var logger = imports.get('utils.logger')(__filename);
+	var sessionService = imports.get('services.sessionService');
+	var Session = imports.get('models.session');
 
 	return function(server) {
 

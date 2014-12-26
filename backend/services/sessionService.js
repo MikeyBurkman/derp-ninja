@@ -1,12 +1,9 @@
 
 module.exports = {
-    import: [{
-        id: 'utils.logger',
-        as: 'log'
-    }, {
-        id: 'models.user',
-        as: 'user'
-    }],
+    import: [
+        'utils.logger',
+        'models.user'
+    ],
     init: init
 }
 
@@ -31,13 +28,13 @@ function init(imports) {
 
     // Could break out authentication and sessions into separate services
 
-    var logger = imports.log(__filename);
+    var logger = imports.get('utils.logger')(__filename);
 
     //set up the basic session storage we are using
     var sessionStorage = {};
 
     //MODELS
-    var User = imports.user;
+    var User = imports.get('models.user');
 
     //SET UP PASSPORT FOR AUTHENTICATION
     passport.use(new LocalStrategy(function(username, password, done){

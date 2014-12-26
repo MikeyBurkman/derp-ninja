@@ -6,31 +6,16 @@
 
 module.exports = {
     isMain: true,
-    import: [{
-        id: 'utils.logger',
-        as: 'log'
-    }, {
-        id: 'daos.threadDao',
-        as: 'threadDao'
-    }, {
-        id: 'services.messageService',
-        as: 'messageService'
-    }, {
-        id: 'services.threadService',
-        as: 'threadService'
-    }, {
-        id: 'services.sessionService',
-        as: 'sessionService'
-    }, {
-        id: 'routes.Router',
-        as: 'Router'
-    }, {
-        id: 'services.threadCacheService',
-        as: 'threadCacheService'
-    }, {
-        id: 'models.user',
-        as: 'user'
-    }],
+    import: [
+        'utils.logger',
+        'daos.threadDao',
+        'services.messageService',
+        'services.threadService',
+        'services.sessionService',
+        'routes.Router',
+        'services.threadCacheService',
+        'models.user',
+    ],
     init: init
 }
 
@@ -39,18 +24,18 @@ function init(imports) {
     var restify = require('restify');
 
     //logger
-    var logger = imports.log(__filename);
+    var logger = imports.get('utils.logger')(__filename);
 
     // TODO: Call only services, no daos
-    var threadDao = imports.threadDao;
-    var messageService = imports.messageService;
-    var Router = imports.Router;
-    var sessionService = imports.sessionService;
-    var User = imports.user;
+    var threadDao = imports.get('daos.threadDao');
+    var messageService = imports.get('services.messageService');
+    var Router = imports.get('routes.Router');
+    var sessionService = imports.get('services.sessionService');
+    var User = imports.get('models.user');
 
     //Iinitialize the thread cache
-    var threadCache = imports.threadCacheService();
-    var threadService = imports.threadService(threadCache);
+    var threadCache = imports.get('services.threadCacheService')();
+    var threadService = imports.get('services.threadService')(threadCache);
 
 
     //create config vars --- these should be move to a config.js

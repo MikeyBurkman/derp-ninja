@@ -2,21 +2,18 @@
 //This service is used for creating, deleting and modifying threads
 
 module.exports = {
-    import: [{
-        id: 'utils.logger',
-        as: 'log'
-    }, {
-        id: 'daos.threadDao',
-        as: 'threadDao'
-    }],
+    import: [
+        'utils.logger',
+        'daos.threadDao'
+    ],
     init: init
 }
 
 function init(imports) {
 
     var q = require('q');
-    var threadDao = imports.threadDao;
-    var logger = imports.log
+    var threadDao = imports.get('daos.threadDao');
+    var logger = imports.get('utils.logger')(__filename);
 
     return threadService;
 

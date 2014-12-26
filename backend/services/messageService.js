@@ -1,12 +1,9 @@
 
 module.exports = {
-	import: [{
-		id: 'utils.logger',
-		as: 'log'
-	}, {
-		id: 'daos.threadDao',
-		as: 'threadDao'
-	}],
+	import: [
+		'utils.logger',
+		'daos.threadDao',
+	],
 	init: init
 };
 
@@ -14,7 +11,8 @@ function init(imports) {
 
 	var q = require('q');
 
-	var threadDao = imports.threadDao;
+	var logger = imports.get('utils.logger')(__filename);
+	var threadDao = imports.get('daos.threadDao');
 
 	// In-memory threads, used as a cache
 	var threads = {};

@@ -5,16 +5,11 @@
 //
 
 module.exports = {
-    import: [{
-        id: 'models.user',
-        as: 'user'
-    }, {
-        id: 'models.thread',
-        as: 'thread'
-    }, {
-        id: 'models.message',
-        as: 'message'
-    }],
+    import: [
+        'models.user',
+        'models.thread',
+        'models.message'
+    ],
     init: init
 }
 
@@ -26,9 +21,9 @@ function init(imports) {
     mongoose.connect('mongodb://localhost:27017/derp-ninja');
 
     //bring in the models
-    var User = imports.user;
-    var Thread = imports.thread;
-    var Message = mongoose.model('Message', imports.message);
+    var User = imports.get('models.user');
+    var Thread = imports.get('models.thread');
+    var Message = mongoose.model('Message', imports.get('models.message'));
 
     //create and save a user
     var aUser = new User();
