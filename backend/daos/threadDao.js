@@ -1,85 +1,88 @@
 
 module.exports = {
-	createThread: createThread,
-	createMessage: createMessage,
-	lookupMessages: lookupMessages,
-    findThreadsByUser: findThreadsByUser
+    import: [
+        'models.thread',
+        'models.message'
+    ],
+    init: init
 };
 
-var q = require('q');
-var MessageThread = require('../models/thread');
-var Message = require('../models/message');
+function init(imports) {
 
-function createThread(userId, title, tags) {
-	var defer = q.defer();
+    var q = require('q');
+    var MessageThread = imports.get('models.thread');
+    var Message = imports.get('models.message');
 
-	var userEntry = {
-		user: userId,
-		createdThread: true
-	};
+    return {
+        createThread: createThread,
+        createMessage: createMessage,
+        lookupMessages: lookupMessages,
+        findThreadsByUser: findThreadsByUser
+    };
 
-	var t = new MessageThread();
-    
-    t.users = [];
-    t.users.push(userEntry);
-    t.title = title
-    t.tags = tags;
-    
-    t.save(function(err, thread){
-        if(err){
-            defer.reject(err);
-        } else {
-        	defer.resolve(thread);
-        }
-    }); 
+    function createThread(userId, title, tags) {
+    	var defer = q.defer();
 
-    return defer.promise;
-};
+    	var userEntry = {
+    		user: userId,
+    		createdThread: true
+    	};
 
-function findThreadsByUser(userId) {
-    var defer = q.defer();
+    	var t = new MessageThread();
         
-    MessageThread
-        .find({'users.user':userId})
-        .exec()
-        .then(function(threads){
-            defer.resolve(threads); 
-        }, function(err){
-            defer.reject(err); 
+        t.users = [];
+        t.users.push(userEntry);
+        t.title = title
+        t.tags = tags;
+        
+        t.save(function(err, thread){
+            if(err){
+                defer.reject(err);
+            } else {
+            	defer.resolve(thread);
+            }
         }); 
 
-    return defer.promise;
-};
+        return defer.promise;
+    };
 
-function createMessage(threadId, message) {
-	var defer = q.defer();
+    function findThreadsByUser(userId) {
+        return MessageThread
+                .find({'users.user':userId})
+               .exec(); 
+    };
 
-	MessageThread.findOne({_id:threadId}).exec()
-        .then(function(thread){
-            var msg = new Message();
-            msg.user = message.user;
-            msg.messageText = message.text;
-            thread.messages.push(msg);
-            thread.save(function(err, thread){
-            	if (err) {
-            		defer.rejet(err);
-            	} else {
-            		defer.resolve(msg);
-            	}
+    function createMessage(threadId, message) {
+    	var defer = q.defer();
+
+    	MessageThread.findOne({_id:threadId}).exec()
+            .then(function(thread){
+                var msg = new Message();
+                msg.user = message.user;
+                msg.messageText = message.text;
+                thread.messages.push(msg);
+                thread.save(function(err, thread){
+                	if (err) {
+                		defer.rejet(err);
+                	} else {
+                		defer.resolve(msg);
+                	}
+                });
+            }, function(err) {
+            	defer.reject(err);
             });
-        }, function(err) {
-        	defer.reject(err);
-        });
 
-    return defer.promise;
-};
+        return defer.promise;
+    };
 
-// TODO
-function lookupMessages(threadId, minTimestamp) {
-	var defer = q.defer();
-	defer.resolve([]);
-	return defer.promise;
-};
+    // TODO
+    function lookupMessages(threadId, minTimestamp) {
+    	var defer = q.defer();
+    	defer.resolve([]);
+    	return defer.promise;
+    };
+
+}
 
 
 

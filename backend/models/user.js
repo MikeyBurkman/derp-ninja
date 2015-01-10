@@ -2,14 +2,21 @@
 //user model
 //
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+module.exports = {
+	init: init
+}
 
-var UserSchema = new Schema({
-    _id: String,
-    displayName: String,
-    password: String,
-    created: {type: Date, default: new Date()}
-});
+function init(imports) {
+	var mongoose = require('mongoose');
+	var Schema = mongoose.Schema;
 
-module.exports = mongoose.model('User', UserSchema);
+	var UserSchema = new Schema({
+	    _id: String,
+	    displayName: String,
+	    password: String,
+	    created: {type: Date, default: new Date()}
+	});
+
+	return mongoose.model('User', UserSchema);
+
+}

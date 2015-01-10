@@ -10,7 +10,8 @@
     "q": "1.1.x",
     "restify": "~2.8.2",
     "restify-cookies": "0.1.x",
-    "sugar": "1.4.x"
+    "sugar": "1.4.x",
+    "eggnog": "^0.2.0"
   },
   "devDependencies": {
     "gulp": "^3.6.0",

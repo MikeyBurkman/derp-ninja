@@ -1,67 +1,79 @@
-var logger = require('../utils/logger')(__filename);
 
+module.exports = {
+	import: [
+		'utils.logger',
+		'services.sessionService',
+		'models.session'
+	],
+	init: init
+}
 
-module.exports = function(server) {
+function init(imports) {
 
-	this.get = request.fill(server, 'get');
-	this.post = request.fill(server, 'post');
-	this.put = request.fill(server, 'put');
-	this.del = request.fill(server, 'del');
-	this.serverError = serverError;
+	var logger = imports.get('utils.logger')(__filename);
+	var sessionService = imports.get('services.sessionService');
+	var Session = imports.get('models.session');
 
-	///////////////////
+	return function(server) {
 
-	var baseApi = '/api';
+		this.get = request.fill(server, 'get');
+		this.post = request.fill(server, 'post');
+		this.put = request.fill(server, 'put');
+		this.del = request.fill(server, 'del');
+		this.serverError = serverError;
 
-	var sessionService = require('../services/sessionService');
-	var Session = require('../models/session');
+		///////////////////
 
-	function createRoutePath(endPoint) {
-	    if(endPoint) {
-	        return baseApi + endPoint;
-	    } else {
-	        return baseApi;
-	    }
-	};
+		var baseApi = '/api';
 
-	// opts: {open: true} if no authentication required
-	//		 {login: true} if passport.authenticate('local') middleware should be called
-	// cb: function(req, res, Session)
-	// TODO: Should we allow next() to be called? Requires us to name routes.
-	function request(server, method, url, cb, opts) {
-		opts = opts || {};
-
-		var endpoint = createRoutePath(url);
-
-		var fn = function(req, res) {
-			logger.info('Got request to: ', [method, endpoint]);
-			var sess = new Session(sessionService.currentSession(req));
-			return cb(req, res, sess);
+		function createRoutePath(endPoint) {
+		    if(endPoint) {
+		        return baseApi + endPoint;
+		    } else {
+		        return baseApi;
+		    }
 		};
 
-		var middleware = [];
+		// opts: {open: true} if no authentication required
+		//		 {login: true} if passport.authenticate('local') middleware should be called
+		// cb: function(req, res, Session)
+		// TODO: Should we allow next() to be called? Requires us to name routes.
+		function request(server, method, url, cb, opts) {
+			opts = opts || {};
 
-		if (opts.login) {
-			// This route authenticates the user
-			middleware.push(sessionService.authenticateUserMW());
-		} else if (!opts.open) {
-			// This route requires the user to already be authenticated
-			middleware.push(sessionService.requireAuthMW());
-		}
-		// TODO: Add authorization here based on roles passed to opts
+			var endpoint = createRoutePath(url);
 
-		var args = [endpoint, middleware, fn].flatten();
-		logger.info('Creating route: ', [method, endpoint, opts]);
-		return server[method].apply(server, args);
-		
-	};
+			var fn = function(req, res) {
+				logger.info('Got request to: ', [method, endpoint]);
+				var sess = new Session(sessionService.currentSession(req));
+				return cb(req, res, sess);
+			};
 
-	// Usage service.something().then(...).catch(serverError(res));
-	function serverError(res) {
-		return function(err) {
-			logger.err('error: ', err);
-			res.send(500);
+			var middleware = [];
+
+			if (opts.login) {
+				// This route authenticates the user
+				middleware.push(sessionService.authenticateUserMW());
+			} else if (!opts.open) {
+				// This route requires the user to already be authenticated
+				middleware.push(sessionService.requireAuthMW());
+			}
+			// TODO: Add authorization here based on roles passed to opts
+
+			var args = [endpoint, middleware, fn].flatten();
+			logger.info('Creating route: ', [method, endpoint, opts]);
+			return server[method].apply(server, args);
+			
 		};
+
+		// Usage service.something().then(...).catch(serverError(res));
+		function serverError(res) {
+			return function(err) {
+				logger.err('error: ', err);
+				res.send(500);
+			};
+		};
+
 	};
 
-};
+}

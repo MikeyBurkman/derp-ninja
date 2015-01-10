@@ -1,1 +1,3 @@
-threadRoutes.js
+module.exports = {
+	init: function() { }
+}
