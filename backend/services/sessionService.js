@@ -7,29 +7,29 @@ module.exports = {
     init: init
 }
 
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var uuid = require('node-uuid');
-
 function init(imports) {
 
-    return {
-        init: init,
-        login: login,
-        logout: logout,
-        isLoggedIn: isLoggedIn,
-        currentSession: currentSession,
-        currentUser: currentUser,
-        requireAuthMW: requireAuthMW,
-        authenticateUserMW: authenticateUserMW
-    };
+    var passport = require('passport');
+    var LocalStrategy = require('passport-local').Strategy;
+    var uuid = require('node-uuid');
 
     ////////////////////
 
     // Could break out authentication and sessions into separate services
 
     var logger = imports.get('utils.logger')(__filename);
+    console.log('got a session service logger');
+    //set up the basic session storage we are using
+    var sessionStorage = {};
 
+    //MODELS
+    var User = imports.get('models.user');
+
+    ////////////////////
+
+    // Could break out authentication and sessions into separate services
+
+    var logger = imports.get('utils.logger')(__filename);
     //set up the basic session storage we are using
     var sessionStorage = {};
 
@@ -44,6 +44,7 @@ function init(imports) {
                 if(user.password === password){
                    return done(null, user);
                 } else {
+                    logger.info(username, ' has logged in');
                     return done(null, false, {message: 'Incorrect password'});
                 }
             }, function(err){
@@ -58,6 +59,18 @@ function init(imports) {
     passport.deserializeUser(function(user, done){
         done(null, user);
     });
+
+    return {
+        init: init,
+        login: login,
+        logout: logout,
+        isLoggedIn: isLoggedIn,
+        currentSession: currentSession,
+        currentUser: currentUser,
+        requireAuthMW: requireAuthMW,
+        authenticateUserMW: authenticateUserMW
+    };
+
 
     function currentSession(req) {
         var sessionId = req.cookies.session;
@@ -101,7 +114,7 @@ function init(imports) {
     function currentUser(req) {
         return sessionAttr(req, 'user');
     };
-
+    
     function init(server) {
         server.use(passport.initialize());
         server.use(passport.session());
