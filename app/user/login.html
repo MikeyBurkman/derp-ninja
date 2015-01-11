@@ -1,0 +1,11 @@
+<div class="row">
+	<span>{{vm.message}}</span>
+</div>
+<form>
+	<div class="row">
+		<md-text-float label="username" ng-model="vm.username"></md-text-float>
+		<md-text-float label="password" ng-model="vm.password"></md-text-float>
+		<md-button ng-click="vm.login()" class="md-primary">Login</md-button>
+	</div>
+</form>	
+<a ui-sref="signup">No account? Sign up here.</a>

@@ -1,14 +1,16 @@
 <!doctype html>
-<html class="no-js" ng-app="derpNinja">
+<html class="no-js" ng-app="app" ng-hint>
   <head>
     <meta charset="utf-8">
     <title>frontend</title>
     <meta name="description" content="">
+    <base href="/">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -25,7 +27,9 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div ui-view></div>
+    <div>
+      <div ng-include="'layout/shell.html'"></div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
@@ -45,12 +49,42 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/hammerjs/hammer.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
+    <script src="bower_components/angular-hint/hint.js"></script>
     <!-- build:js({app,.tmp}) scripts/main.js -->
-    <script src="scripts/derpNinja.js"></script>
-    <script src="scripts/main/main-ctrl.js"></script>
+
+    <!-- Bootstrapping -->
+    <script src="app.module.js"></script>
+
+    <!-- Reusable Blocks -->
+    <script src="blocks/router/router.module.js"></script>
+    <script src="blocks/router/router-helper.provider.js"></script>
+
+    <!-- Core Module -->
+    <script src="core/core.module.js"></script>
+
+    <!-- Layout Module -->
+    <script src="layout/layout.module.js"></script>
+    <script src="layout/shell.controller.js"></script>
+    <script src="layout/sidebar.controller.js"></script>
+
+    <!-- User Module -->
+    <script src="user/user.module.js"></script>
+    <script src="user/user.routes.js"></script>
+    <script src="user/login.controller.js"></script>
+    <script src="user/signup.controller.js"></script>
+    <script src="user/authenticationService.js"></script>
+    <script src="user/UserService.js"></script>
+
+    <!-- Dashboard Module -->
+    <script src="dashboard/dashboard.module.js"></script>
+    <script src="dashboard/dashboard.routes.js"></script>
+    <script src="dashboard/dashboard.controller.js"></script>
+
     <!-- inject:partials -->
     <!-- endinject -->
     <!-- endbuild -->

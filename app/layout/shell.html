@@ -1,0 +1,8 @@
+<div ng-controller="ShellController as vm" layout="column" layout-fill>
+	<section layout="row" flex>
+		<div ng-if="vm.showSidebar()" ng-include="'layout/sidebar.html'"></div>
+		<md-content flex class="md-padding">
+			<div layout-fill layout="column" layout-align="center center" ui-view></div>
+		</md-content>
+	</section>
+</div>
