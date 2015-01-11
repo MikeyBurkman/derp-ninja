@@ -4,6 +4,50 @@
 //
 //
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    });
+}, {open: true});
+
+var friendsList = [{name:'George Harrison'}, {name:'Mr. Ripley'}, {name:'Julius Ceasar'}];
+router.get('/user/friend', function(req, res, session) {    
+    setTimeout(function(){
+        friendsList.push({name:'Bruce Lee'}); 
+    }, 10000);
+    res.json({friends: friendsList});
+});
+
+
+//All the login paths
+router.post('/login', function(req, res) {
+    logger.info('%s is attempting a login', req.params.username);
+    sessionService.login(req, res);
+    res.json({user: req.user._id, message: 'authenticated'});
+}, {login: true});
+
+// TODO: Pretty sure we can just remove {open: true} and get the same effect...
+router.get('/login', function(req, res){
+	if (sessionService.isLoggedIn(req)) {
+		res.json({user: 'authenticated'});
+	} else {
+		res.send(401);
+	}
+}, {open: true});
+
+router.get('/logout', function(req, res){
+    sessionService.logout(req);
+    res.json({user: 'logged out'});
+}, {open: true});
+
+//Message threads
+
+var threadService = require('./services/threadService')(threadCache);
+
+// Create Thread
+router.post('/threads', function(req, res, session){
+=======
+>>>>>>> Stashed changes
 module.exports = {
     isMain: true,
     import: [
@@ -131,6 +175,20 @@ function init(imports) {
             })
             .catch(router.serverError(res));
     });
+<<<<<<< Updated upstream
+
+    // Creae message
+    router.post('/threads/:threadId/messages', function(req, res, session) {
+
+    	var user = session.getUser()._id;
+    	var threadId = req.params.threadId;
+
+    	var msg = {
+    		text: req.body.text,
+    		user: user
+    	};
+
+=======
 
     // Creae message
     router.post('/threads/:threadId/messages', function(req, res, session) {
