@@ -70,7 +70,11 @@ function init(eggnog) {
     var friendsList = [{name:'George Harrison'}, {name:'Mr. Ripley'}, {name:'Julius Ceasar'}];
     router.get('/user/friend', function(req, res, session) {    
         setTimeout(function(){
-            friendsList.push({name:'Bruce Lee'}); 
+            if(friendsList['Bruce Lee']) {
+                delete friendsList['Bruce Lee']
+            } else {
+                friendsList.push({name:'Bruce Lee'});
+            }
         }, 10000);
         res.json({friends: friendsList});
     });
