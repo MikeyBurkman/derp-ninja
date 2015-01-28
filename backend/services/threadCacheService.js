@@ -6,9 +6,9 @@ module.exports = {
     init: init
 }
 
-function init(imports) {
+function init(eggnog) {
 
-    return initializeThreadCache;
+    eggnog.exports = initializeThreadCache;
 
     function initializeThreadCache() {
 

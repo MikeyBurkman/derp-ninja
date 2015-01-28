@@ -1,28 +1,43 @@
 //messageDao.js
 // Interface to search for and insert new messages
 module.exports = {
-    getMessages: getMessages,
-    addMessage: addMessage,
-    deleteMessage: deleteMessage,
-    editMessage: editMessage
+	imports: [
+		'utils.logger',
+		'modles.message'
+	],
+	extImports: [
+		'q'
+	],
+	init: init
 }
 
-var q = require('q');
-var logger = require('../utils/logger');
-var Message = require('../models/message');
+function init(eggnog) {
+	var q = eggnog.import('q');
+	var logger = eggnog.import('utils.logger');
+	var Message = eggnog.import('models.message');
 
-function getMessages(query) {
+	eggnog.exports = {
+		getMessages: getMessages,
+	    addMessage: addMessage,
+	    deleteMessage: deleteMessage,
+	    editMessage: editMessage
+	};
+
+	function getMessages(query) {
+
+	}
+
+	function addMessage(message, thread ){
+
+	}
+
+	function deleteMessage(messageId){
+
+	}
+
+	function editMessage(messageUpdate) {
+
+	}
 
 }
 
-function addMessage(message, thread ){
-
-}
-
-function deleteMessage(messageId){
-
-}
-
-function editMessage(messageUpdate) {
-
-}

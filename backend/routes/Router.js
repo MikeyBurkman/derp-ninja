@@ -1,6 +1,6 @@
 
 module.exports = {
-	import: [
+	imports: [
 		'utils.logger',
 		'services.sessionService',
 		'models.session'
@@ -8,13 +8,13 @@ module.exports = {
 	init: init
 }
 
-function init(imports) {
+function init(eggnog) {
 
-	var logger = imports.get('utils.logger')(__filename);
-	var sessionService = imports.get('services.sessionService');
-	var Session = imports.get('models.session');
+	var logger = eggnog.import('utils.logger')(__filename);
+	var sessionService = eggnog.import('services.sessionService');
+	var Session = eggnog.import('models.session');
 
-	return function(server) {
+	eggnog.exports = function(server) {
 
 		this.get = request.fill(server, 'get');
 		this.post = request.fill(server, 'post');

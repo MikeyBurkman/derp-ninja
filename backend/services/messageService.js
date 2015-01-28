@@ -1,25 +1,28 @@
 
 module.exports = {
-	import: [
+	imports: [
 		'utils.logger',
 		'daos.threadDao',
+	],
+	extImports: [
+		'q'
 	],
 	init: init
 };
 
-function init(imports) {
+function init(eggnog) {
 
-	var q = require('q');
+	var q = eggnog.import('q');
 
-	var logger = imports.get('utils.logger')(__filename);
-	var threadDao = imports.get('daos.threadDao');
+	var logger = eggnog.import('utils.logger')(__filename);
+	var threadDao = eggnog.import('daos.threadDao');
 
 	// In-memory threads, used as a cache
 	var threads = {};
 
 	//// Public API
 
-	return {
+	eggnog.exports = {
 		getMessages: getMessages,
 		createMessage: createMessage
 	};

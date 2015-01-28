@@ -4,12 +4,15 @@
 //
 
 module.exports = {
+	extImports: [
+		'mongoose'
+	],
 	init: init
 }
 
-function init(imports) {
+function init(eggnog) {
 
-	var mongoose = require('mongoose');
+	var mongoose = eggnog.import('mongoose');
 	var Schema = mongoose.Schema;
 
 	var MessageSchema = new Schema({
@@ -19,6 +22,6 @@ function init(imports) {
 	    created: {type: Date, default: new Date()}
 	});
 
-	return MessageSchema;
+	eggnog.exports = MessageSchema;
 
 }

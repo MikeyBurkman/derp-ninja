@@ -1,40 +1,45 @@
 
 module.exports = {
-    import: [
+    imports: [
         'utils.logger',
         'models.user'
+    ],
+    extImports: [
+        'passport',
+        'passport-local',
+        'node-uuid'
     ],
     init: init
 }
 
-function init(imports) {
+function init(eggnog) {
 
-    var passport = require('passport');
-    var LocalStrategy = require('passport-local').Strategy;
-    var uuid = require('node-uuid');
+    var passport = eggnog.import('passport');
+    var LocalStrategy = eggnog.import('passport-local').Strategy;
+    var uuid = eggnog.import('node-uuid');
 
     ////////////////////
 
     // Could break out authentication and sessions into separate services
 
-    var logger = imports.get('utils.logger')(__filename);
+    var logger = eggnog.import('utils.logger')(__filename);
     console.log('got a session service logger');
     //set up the basic session storage we are using
     var sessionStorage = {};
 
     //MODELS
-    var User = imports.get('models.user');
+    var User = eggnog.import('models.user');
 
     ////////////////////
 
     // Could break out authentication and sessions into separate services
 
-    var logger = imports.get('utils.logger')(__filename);
+    var logger = eggnog.import('utils.logger')(__filename);
     //set up the basic session storage we are using
     var sessionStorage = {};
 
     //MODELS
-    var User = imports.get('models.user');
+    var User = eggnog.import('models.user');
 
     //SET UP PASSPORT FOR AUTHENTICATION
     passport.use(new LocalStrategy(function(username, password, done){
@@ -60,7 +65,7 @@ function init(imports) {
         done(null, user);
     });
 
-    return {
+    eggnog.exports = {
         init: init,
         login: login,
         logout: logout,

@@ -1,19 +1,22 @@
 
 module.exports = {
-    import: [
+    imports: [
         'models.thread',
         'models.message'
+    ],
+    extImports: [
+        'q'
     ],
     init: init
 };
 
-function init(imports) {
+function init(eggnog) {
 
-    var q = require('q');
-    var MessageThread = imports.get('models.thread');
-    var Message = imports.get('models.message');
+    var q = eggnog.import('q');
+    var MessageThread = eggnog.import('models.thread');
+    var Message = eggnog.import('models.message');
 
-    return {
+    eggnog.exports = {
         createThread: createThread,
         createMessage: createMessage,
         lookupMessages: lookupMessages,

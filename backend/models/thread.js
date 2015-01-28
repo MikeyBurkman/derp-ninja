@@ -3,17 +3,20 @@
 //
 
 module.exports = {
-    import: [
+    imports: [
         'models.message'
+    ],
+    extImports: [
+        'mongoose'
     ],
     init: init
 }
 
-function init(imports) {
+function init(eggnog) {
 
-    var Message = imports.get('models.message');
+    var Message = eggnog.import('models.message');
     
-    var mongoose = require('mongoose');
+    var mongoose = eggnog.import('mongoose');
     var Schema = mongoose.Schema;
 
     var ThreadSchema = new Schema({
@@ -36,6 +39,6 @@ function init(imports) {
         return users.length != 0;
     });
 
-    return mongoose.model('Thread', ThreadSchema);;
+    eggnog.exports = mongoose.model('Thread', ThreadSchema);;
 
 }

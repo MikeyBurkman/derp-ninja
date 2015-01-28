@@ -5,25 +5,28 @@
 //
 
 module.exports = {
-    import: [
+    imports: [
         'models.user',
         'models.thread',
         'models.message'
     ],
+    extImports: [
+        'mongoose'
+    ],
     init: init
 }
 
-var mongoose = require('mongoose');
+function init(eggnog) {
 
-function init(imports) {
+    var mongoose = eggnog.import('mongoose');
 
     //initalize connection to db
     mongoose.connect('mongodb://localhost:27017/derp-ninja');
 
     //bring in the models
-    var User = imports.get('models.user');
-    var Thread = imports.get('models.thread');
-    var Message = mongoose.model('Message', imports.get('models.message'));
+    var User = eggnog.import('models.user');
+    var Thread = eggnog.import('models.thread');
+    var Message = mongoose.model('Message', eggnog.import('models.message'));
 
     //create and save a user
     var aUser = new User();

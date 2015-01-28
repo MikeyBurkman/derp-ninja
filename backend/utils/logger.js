@@ -1,15 +1,20 @@
 //logger.js
 // Logger utility class
 module.exports = {
-    init: init
+    init: init,
+    extImports: [
+        'bunyan'
+    ]
 };
 
-function init() {
-    var bunyan = require('bunyan');
+function init(eggnog) {
+    var bunyan = eggnog.import('bunyan');
+
+    eggnog.exports = logger;
 
     var logSource = true; // Logging source is slow, will want to turn this off eventually
 
-    var logger = function(name) {
+    function logger(name) {
         name = name || 'derp-ninja-messaging'
         return bunyan.createLogger({
             name: name,
@@ -29,6 +34,5 @@ function init() {
         });
     };
 
-    return logger;
 };
 

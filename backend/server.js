@@ -6,7 +6,7 @@
 
 module.exports = {
     isMain: true,
-    import: [
+    imports: [
         'utils.logger',
         'daos.threadDao',
         'services.messageService',
@@ -16,26 +16,31 @@ module.exports = {
         'services.threadCacheService',
         'models.user',
     ],
+    extImports: [
+        'sugar', // Just need to import this guy here
+        'restify',
+        'restify-cookies',
+        'mongoose'
+    ],
     init: init
 }
 
-function init(imports) {
-    require('sugar');
-    var restify = require('restify');
+function init(eggnog) {
+    var restify = eggnog.import('restify');
 
     //logger
-    var logger = imports.get('utils.logger')(__filename);
+    var logger = eggnog.import('utils.logger')(__filename);
 
     // TODO: Call only services, no daos
-    var threadDao = imports.get('daos.threadDao');
-    var messageService = imports.get('services.messageService');
-    var Router = imports.get('routes.Router');
-    var sessionService = imports.get('services.sessionService');
-    var User = imports.get('models.user');
+    var threadDao = eggnog.import('daos.threadDao');
+    var messageService = eggnog.import('services.messageService');
+    var Router = eggnog.import('routes.Router');
+    var sessionService = eggnog.import('services.sessionService');
+    var User = eggnog.import('models.user');
 
     //Iinitialize the thread cache
-    var threadCache = imports.get('services.threadCacheService')();
-    var threadService = imports.get('services.threadService')(threadCache);
+    var threadCache = eggnog.import('services.threadCacheService')();
+    var threadService = eggnog.import('services.threadService')(threadCache);
 
 
     //create config vars --- these should be move to a config.js
@@ -45,7 +50,7 @@ function init(imports) {
     //create the server
     var server = restify.createServer();
     server.use(restify.bodyParser());
-    var cookieParser = require('restify-cookies');
+    var cookieParser = eggnog.import('restify-cookies');
     server.use(cookieParser.parse);
     server.use(restify.queryParser());
     server.use(restify.requestLogger());
@@ -54,7 +59,7 @@ function init(imports) {
     sessionService.init(server);
 
     //MONGOOSE SETUP
-    var mongoose = require('mongoose');
+    var mongoose = eggnog.import('mongoose');
     mongoose.connect(mongoEndpoint);
 
     router.get(undefined, function(req, res){

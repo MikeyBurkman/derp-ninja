@@ -3,9 +3,9 @@ module.exports = {
 	init: init
 }
 
-function init(imports) {
+function init(eggnog) {
 
-	return function(session) {
+	eggnog.exports = function(session) {
 
 		this.getUser = getAttr.fill('user');
 		this.setUser = setAttr.fill('user');
