@@ -15,6 +15,11 @@ var proxy = httpProxy.createProxyServer({
   target: proxyTarget
 });
 
+proxy.on('error', function(proxyRes, req, res) {
+  console.log(res);
+  res.close();
+});
+
 function proxyMiddleware(req, res, next) {
   if (req.url.indexOf(proxyApiPrefix) !== -1) {
     console.log('Browser-Sync Proxying: ', req.url);
@@ -43,11 +48,7 @@ gulp.task('serve', ['watch'], function () {
     'app',
     '.tmp'
   ], [
-    'app/*.html',
-    '.tmp/styles/**/*.css',
-    'app/scripts/**/*.js',
-    'app/partials/**/*.html',
-    'app/images/**/*'
+    'app/**/*.html'
   ]);
 });
 
