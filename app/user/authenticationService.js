@@ -22,7 +22,7 @@
 		function addUser(user) {
 			var req = {
 				method: 'POST',
-				url: '/api/user',
+				url: '/api/users',
 				headers: {
 				  'Content-Type': 'application/json'
 				},

@@ -17,7 +17,7 @@ module.exports = {
         'models.user',
     ],
     extImports: [
-        'sugar', // Just need to import this guy here
+        'sugar',
         'restify',
         'restify-cookies',
         'mongoose'
@@ -26,6 +26,9 @@ module.exports = {
 }
 
 function init(eggnog) {
+    // Just need to import sugar
+    eggnog.import('sugar');
+
     var restify = eggnog.import('restify');
 
     //logger
