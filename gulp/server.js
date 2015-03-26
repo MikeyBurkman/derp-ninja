@@ -15,10 +15,6 @@ var proxy = httpProxy.createProxyServer({
   target: proxyTarget
 });
 
-proxy.on('error', function(proxyRes, req, res) {
-  res.close();
-});
-
 function proxyMiddleware(req, res, next) {
   if (req.url.indexOf(proxyApiPrefix) !== -1) {
     console.log('Browser-Sync Proxying: ', req.url);
