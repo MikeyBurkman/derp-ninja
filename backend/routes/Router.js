@@ -63,13 +63,13 @@ function init(eggnog) {
 			var args = [endpoint, middleware, fn].flatten();
 			logger.info('Creating route: ', [method, endpoint, opts]);
 			return server[method].apply(server, args);
-			
+
 		};
 
 		// Usage service.something().then(...).catch(serverError(res));
 		function serverError(res) {
 			return function(err) {
-				logger.err('error: ', err);
+				logger.error(err);
 				res.send(500);
 			};
 		};
