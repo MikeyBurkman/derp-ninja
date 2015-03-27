@@ -1,0 +1,5 @@
+To view logs:
+
+install bunyan (gulp install -g bunyan)
+
+tail -f logs/derp-ninja-messaging.log | bunyan
