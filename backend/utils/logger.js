@@ -1,10 +1,10 @@
 //logger.js
 // Logger utility class
 module.exports = {
-    init: init,
-    extImports: [
+    externals: [
         'bunyan'
-    ]
+    ],
+    init: init
 };
 
 function init(eggnog) {
@@ -36,4 +36,3 @@ function init(eggnog) {
     };
 
 };
-

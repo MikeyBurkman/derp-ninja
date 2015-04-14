@@ -6,6 +6,7 @@ var gulp = require('gulp');
 
 var browserSync = require('browser-sync');
 var httpProxy = require('http-proxy');
+var nodemon = require('gulp-nodemon');
 
 /* This configuration allow you to configure browser sync to proxy your backend */
 var proxyTarget = 'http://localhost:3001'; // The location of your backend
@@ -58,3 +59,13 @@ gulp.task('serve:e2e', function () {
 gulp.task('serve:e2e-dist', ['watch'], function () {
   browserSyncInit('dist', null, []);
 });
+
+gulp.task('serve:backend', function () {
+  nodemon({
+    script: 'backend/app.js',
+    ext: 'js'
+    // TODO: Watch only backend files?
+  });
+});
+
+gulp.task('serve:all', ['serve', 'serve:backend']);

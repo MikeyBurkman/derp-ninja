@@ -1,10 +1,10 @@
 
 module.exports = {
-    imports: [
+    locals: [
         'utils.logger',
         'models.user'
     ],
-    extImports: [
+    externals: [
         'passport',
         'passport-local',
         'node-uuid'
@@ -131,4 +131,3 @@ function init(eggnog) {
         };
     };
 }
-

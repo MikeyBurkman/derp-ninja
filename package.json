@@ -49,7 +49,8 @@
     "gulp-protractor": "0.0.7",
     "gulp-plumber": "^0.6.3",
     "protractor": "~0.24.2",
-    "uglify-save-license": "^0.4.1"
+    "uglify-save-license": "^0.4.1",
+    "gulp-nodemon": "^2.0.2"
   },
   "engines": {
     "node": ">=0.10.0"

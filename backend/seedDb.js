@@ -5,12 +5,12 @@
 //
 
 module.exports = {
-    imports: [
+    locals: [
         'models.user',
         'models.thread',
         'models.message'
     ],
-    extImports: [
+    externals: [
         'mongoose'
     ],
     init: init

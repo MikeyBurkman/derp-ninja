@@ -1,10 +1,10 @@
 
 module.exports = {
-	imports: [
+	locals: [
 		'utils.logger',
 		'daos.threadDao',
 	],
-	extImports: [
+	externals: [
 		'q'
 	],
 	init: init

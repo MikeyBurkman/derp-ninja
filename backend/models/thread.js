@@ -3,10 +3,10 @@
 //
 
 module.exports = {
-    imports: [
+    locals: [
         'models.message'
     ],
-    extImports: [
+    externals: [
         'mongoose'
     ],
     init: init
@@ -15,7 +15,7 @@ module.exports = {
 function init(eggnog) {
 
     var Message = eggnog.import('models.message');
-    
+
     var mongoose = eggnog.import('mongoose');
     var Schema = mongoose.Schema;
 
@@ -32,7 +32,7 @@ function init(eggnog) {
         title: {type: String, required: true},
         tags: [{type: String, default: []}],
         appTags: [{type: String, default: []}],
-        messages: {type:[Message], default: []}    
+        messages: {type:[Message], default: []}
     });
 
     ThreadSchema.path('users').validate(function(users) {

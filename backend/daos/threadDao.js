@@ -1,10 +1,10 @@
 
 module.exports = {
-    imports: [
+    locals: [
         'models.thread',
         'models.message'
     ],
-    extImports: [
+    externals: [
         'q'
     ],
     init: init
@@ -102,6 +102,3 @@ function init(eggnog) {
   };
 
 }
-
-
-

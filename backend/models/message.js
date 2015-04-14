@@ -4,7 +4,7 @@
 //
 
 module.exports = {
-	extImports: [
+	externals: [
 		'mongoose'
 	],
 	init: init

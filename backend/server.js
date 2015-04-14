@@ -6,7 +6,7 @@
 
 module.exports = {
     isMain: true,
-    imports: [
+    locals: [
         'utils.logger',
         'daos.threadDao',
         'services.messageService',
@@ -16,7 +16,7 @@ module.exports = {
         'services.threadCacheService',
         'models.user',
     ],
-    extImports: [
+    externals: [
         'sugar',
         'restify',
         'restify-cookies',

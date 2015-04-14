@@ -1,6 +1,6 @@
 
 module.exports = {
-	imports: [
+	locals: [
 		'utils.logger',
 		'services.sessionService',
 		'models.session'
