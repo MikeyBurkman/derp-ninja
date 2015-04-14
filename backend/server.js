@@ -71,8 +71,8 @@ function init(eggnog) {
 
     //All paths related to users
     var friendsList = [{name:'George Harrison'}, {name:'Mr. Ripley'}, {name:'Julius Ceasar'}];
-    router.get('/user/friend', function(req, res, session) {    
-        setTimeout(function(){
+    router.get('/user/friend', function(req, res, session) {
+        setInterval(function(){
             if(friendsList['Bruce Lee']) {
                 delete friendsList['Bruce Lee']
             } else {
@@ -103,8 +103,6 @@ function init(eggnog) {
 
         });
     }, {open: true});
-
-
 
     //All the login paths
     router.post('/login', function(req, res) {
@@ -160,22 +158,9 @@ function init(eggnog) {
     		text: req.body.text,
     		user: user
     	};
-    });
 
-
-    // Creae message
-    router.post('/threads/:threadId/messages', function(req, res, session) {
-
-    	var user = session.getUser()._id;
-    	var threadId = req.params.threadId;
-
-    	var msg = {
-    		text: req.body.text,
-    		user: user
-    	};
-
-    	messageSevice
-    		.newMessage(threadId, msg)
+    	messageService
+    		.createMessage(threadId, msg)
     		.then(function() {
     			res.send(201);
     		})

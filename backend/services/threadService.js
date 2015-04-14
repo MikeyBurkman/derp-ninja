@@ -44,14 +44,7 @@ function init(eggnog) {
 
         function getThreadsForUser(userId) {
             return threadDao
-                    .findThreadsByUser(userId)
-                    .then(function(threads){
-                        if(threads.length == 0) return q.reject({empty:userId+' is in no threads'});
-                        return threads;
-                    })
-                    .catch(function(err){
-                        return q.reject(err);
-                    });
+                    .findThreadsByUser(userId);
         }
 
         return {

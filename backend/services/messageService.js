@@ -38,7 +38,7 @@ function init(eggnog) {
 
 	// Get all messages for the given thread whose timestamp >= minTimestamp
 	function getMessages(threadId, minTimestamp) {
-		
+
 		var thread = getThread(threadId);
 
 		thread.lastAccess = Date.now();
@@ -54,17 +54,18 @@ function init(eggnog) {
 					thread.minTimestamp = minTimestamp;
 					return thread.messages;
 				});
-		} else {
-			var msgs = [];
+		}
 
-			for (var i = 0; i < thread.messages.length; i += 1) {
-				var m = thread.messages[i];
-				if (m.timestamp >= timestamp) {
-					msgs.push(m);
-				} else {
-					// Messages are ordered, so messages after this will have a timestamp after the argument
-					break;
-				}
+    // We should have everything in cache
+		var msgs = [];
+
+		for (var i = 0; i < thread.messages.length; i += 1) {
+			var m = thread.messages[i];
+			if (m.timestamp >= timestamp) {
+				msgs.push(m);
+			} else {
+				// Messages are ordered, so messages after this will have a timestamp after the argument
+				break;
 			}
 
 			var defer = q.defer();
@@ -89,7 +90,7 @@ function init(eggnog) {
 				// Push to local memory.
 				// We could probably write to memory first, and async write to DB
 				if (thread.messages.length === 0) {
-					// Empty thread, so 
+					// Empty thread, so
 					thread.minTimestamp = msg.timestamp;
 				}
 				thread.messages.push(msg);
@@ -106,7 +107,6 @@ function init(eggnog) {
 		if (!t) {
 			// Invariant: for all values in messages, no value has timestamp > minTimestamp
 			t = threads[threadId] = {
-				name: roomName,
 				lastAccess: Date.now(),
 				minTimestamp: 4294967295, // MAX_INT -- update after looking up messages
 				messages: [] // Messages in order from newest to oldest, going back to minTimestamp
@@ -125,6 +125,3 @@ function init(eggnog) {
 	};
 
 }
-
-
-

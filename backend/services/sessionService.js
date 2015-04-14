@@ -21,25 +21,16 @@ function init(eggnog) {
     ////////////////////
 
     // Could break out authentication and sessions into separate services
-
     var logger = eggnog.import('utils.logger')(__filename);
-    console.log('got a session service logger');
-    //set up the basic session storage we are using
-    var sessionStorage = {};
 
     //MODELS
     var User = eggnog.import('models.user');
 
     ////////////////////
 
-    // Could break out authentication and sessions into separate services
-
-    var logger = eggnog.import('utils.logger')(__filename);
     //set up the basic session storage we are using
+    // Could break out authentication and sessions into separate services
     var sessionStorage = {};
-
-    //MODELS
-    var User = eggnog.import('models.user');
 
     //SET UP PASSPORT FOR AUTHENTICATION
     passport.use(new LocalStrategy(function(username, password, done){
@@ -104,7 +95,7 @@ function init(eggnog) {
             user: req.user
         }
         req.cookies.session = session;
-        res.setCookie('session', sessionId);  
+        res.setCookie('session', sessionId);
     };
 
     function isLoggedIn(req) {
@@ -119,7 +110,7 @@ function init(eggnog) {
     function currentUser(req) {
         return sessionAttr(req, 'user');
     };
-    
+
     function init(server) {
         server.use(passport.initialize());
         server.use(passport.session());
@@ -131,7 +122,6 @@ function init(eggnog) {
 
     function requireAuthMW() {
         return function(req, res, next) {
-            console.log('Verifying user is logged in...');
             // TODO: if isLoggedIn(req)?
             if (currentSession(req)) {
                 next();

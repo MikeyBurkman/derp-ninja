@@ -29,7 +29,7 @@ function init(eggnog) {
             //possibly set this to an internal invertal
         }
 
-        setInterval(pruneThreads, 100000);;
+        setInterval(pruneThreads, 100000);
 
         return {
             getThread: getThread,
