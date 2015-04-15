@@ -63,8 +63,8 @@ gulp.task('serve:e2e-dist', ['watch'], function () {
 gulp.task('serve:backend', function () {
   nodemon({
     script: 'backend/app.js',
+    watch: ['backend/'],
     ext: 'js'
-    // TODO: Watch only backend files?
   });
 });
 
