@@ -2,7 +2,8 @@
 module.exports = {
     locals: [
         'models.thread',
-        'models.message'
+        'models.message',
+        'utils.logger'
     ],
     externals: [
         'q'
@@ -13,8 +14,9 @@ module.exports = {
 function init(eggnog) {
 
   var q = eggnog.import('q');
+  var logger = eggnog.import('utils.logger')(__filename);
   var MessageThread = eggnog.import('models.thread');
-  var Message = eggnog.import('models.message');
+  var messageModel = eggnog.import('models.message');
 
   eggnog.exports = {
     createThread: createThread,
@@ -64,26 +66,18 @@ function init(eggnog) {
   };
 
   function createMessage(threadId, message) {
-  	var defer = q.defer();
+  	var deferred = q.defer();
 
-  	MessageThread.findOne({_id:threadId}).exec()
-      .then(function(thread){
-        var msg = new Message();
+  	var query = MessageThread.findOne({_id:threadId})
+
+    return q.ninvoke(query, 'exec')
+      .then(function(thread) {
+        var msg = new messageModel.Message();
         msg.user = message.user;
         msg.messageText = message.text;
         thread.messages.push(msg);
-        thread.save(function(err, thread){
-        	if (err) {
-        		defer.rejet(err);
-        	} else {
-        		defer.resolve(msg);
-        	}
-        });
-      }, function(err) {
-      	defer.reject(err);
+        return q.ninvoke(thread, 'save');
       });
-
-      return defer.promise;
   };
 
   // TODO
@@ -94,7 +88,6 @@ function init(eggnog) {
       .then(function(thread) {
         defer.resolve(thread.messages);
       }, function(err) {
-        console.log('blah');
         defer.reject(err);
       });
 

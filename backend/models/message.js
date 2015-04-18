@@ -22,6 +22,9 @@ function init(eggnog) {
 	    created: {type: Date, default: new Date()}
 	});
 
-	eggnog.exports = MessageSchema;
+	eggnog.exports = {
+		Message: mongoose.model('Message', MessageSchema),
+		schema: MessageSchema
+	};
 
 }

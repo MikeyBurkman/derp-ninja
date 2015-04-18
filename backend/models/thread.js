@@ -14,7 +14,7 @@ module.exports = {
 
 function init(eggnog) {
 
-    var Message = eggnog.import('models.message');
+    var message = eggnog.import('models.message');
 
     var mongoose = eggnog.import('mongoose');
     var Schema = mongoose.Schema;
@@ -32,13 +32,13 @@ function init(eggnog) {
         title: {type: String, required: true},
         tags: [{type: String, default: []}],
         appTags: [{type: String, default: []}],
-        messages: {type:[Message], default: []}
+        messages: {type:[message.schema], default: []}
     });
 
     ThreadSchema.path('users').validate(function(users) {
         return users.length != 0;
     });
 
-    eggnog.exports = mongoose.model('Thread', ThreadSchema);;
+    eggnog.exports = mongoose.model('Thread', ThreadSchema);
 
 }

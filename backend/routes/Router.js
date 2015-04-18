@@ -69,7 +69,12 @@ function init(eggnog) {
 		// Usage service.something().then(...).catch(serverError(res));
 		function serverError(res) {
 			return function(err) {
-				logger.error(err);
+				logger.error({
+					err: err,
+					code: err.code,
+					message: err.message,
+					stack: err.stack
+				});
 				res.send(500);
 			};
 		};

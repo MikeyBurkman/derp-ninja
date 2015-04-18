@@ -18,9 +18,13 @@ module.exports = {
     ],
     externals: [
         'sugar',
+        'q',
         'restify',
         'restify-cookies',
         'mongoose'
+    ],
+    globals: [
+      'console'
     ],
     init: init
 }
@@ -29,7 +33,12 @@ function init(eggnog) {
     // Just need to import sugar
     eggnog.import('sugar');
 
+    var console = eggnog.import('console');
+
     var restify = eggnog.import('restify');
+
+    // Long stack traces on errors
+    eggnog.import('q').longStackSupport = true;
 
     //logger
     var logger = eggnog.import('utils.logger')(__filename);

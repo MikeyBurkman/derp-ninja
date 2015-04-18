@@ -29,6 +29,20 @@ function init(eggnog) {
 
 	///////////
 
+	function getMessages(threadId, minTimestamp) {
+		return threadDao.lookupMessages(threadId, 0);
+	}
+
+	function createMessage(threadId, message) {
+		var msg = {
+			text: message.text,
+			user: message.user,
+			timestamp: Date.now()
+		};
+
+		return threadDao.createMessage(threadId, msg);
+	}
+
 	// Todo: Messages for any thread should always be a promise
 	// When populating a thread's message, that promise should be replaced by a new one
 
@@ -37,7 +51,7 @@ function init(eggnog) {
 	// Can also delete threads that haven't been accessed in a while
 
 	// Get all messages for the given thread whose timestamp >= minTimestamp
-	function getMessages(threadId, minTimestamp) {
+	function _getMessages(threadId, minTimestamp) {
 
 		var thread = getThread(threadId);
 
@@ -75,7 +89,7 @@ function init(eggnog) {
 
 	};
 
-	function createMessage(threadId, message) {
+	function _createMessage(threadId, message) {
 		var thread = getThread(threadId);
 
 		var msg = {
