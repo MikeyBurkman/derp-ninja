@@ -5,15 +5,11 @@ module.exports = {
         'utils.logger',
         'daos.threadDao'
     ],
-    externals: [
-        'q'
-    ],
     init: init
 }
 
 function init(eggnog) {
 
-    var q = eggnog.import('q');
     var threadDao = eggnog.import('daos.threadDao');
     var logger = eggnog.import('utils.logger')(__filename);
 

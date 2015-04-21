@@ -5,14 +5,14 @@ module.exports = {
 		'daos.threadDao',
 	],
 	externals: [
-		'q'
+		'bluebird'
 	],
 	init: init
 };
 
 function init(eggnog) {
 
-	var q = eggnog.import('q');
+	var Promise = eggnog.import('bluebird');
 
 	var logger = eggnog.import('utils.logger')(__filename);
 	var threadDao = eggnog.import('daos.threadDao');
@@ -82,9 +82,7 @@ function init(eggnog) {
 				break;
 			}
 
-			var defer = q.defer();
-			defer.resolve(msgs);
-			return defer.promise;
+			return Promise.resolve(msgs);
 		}
 
 	};

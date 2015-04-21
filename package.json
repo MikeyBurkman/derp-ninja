@@ -7,7 +7,7 @@
     "node-uuid": "1.4.x",
     "passport": "0.2.x",
     "passport-local": "1.0.x",
-    "q": "1.1.x",
+    "bluebird": "~2.9.24",
     "restify": "~2.8.2",
     "restify-cookies": "0.1.x",
     "sugar": "1.4.x",

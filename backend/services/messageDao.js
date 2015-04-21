@@ -5,14 +5,10 @@ module.exports = {
 		'utils.logger',
 		'modles.message'
 	],
-	externals: [
-		'q'
-	],
 	init: init
 }
 
 function init(eggnog) {
-	var q = eggnog.import('q');
 	var logger = eggnog.import('utils.logger');
 	var Message = eggnog.import('models.message');
 
