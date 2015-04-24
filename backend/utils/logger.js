@@ -1,5 +1,8 @@
 //logger.js
 // Logger utility class
+
+'use strict';
+
 module.exports = {
     externals: [
         'bunyan'
@@ -16,7 +19,7 @@ function init(eggnog) {
 
     function logger(name) {
         // If logging source, the name is redundant, so don't include it
-        var name = logSource ? ' ' : (name || 'derp-ninja-messaging');
+        name = logSource ? ' ' : (name || 'derp-ninja-messaging');
         return bunyan.createLogger({
             name: name,
             src: logSource,
@@ -33,6 +36,6 @@ function init(eggnog) {
                 level: 'warn'
             }]
         });
-    };
+    }
 
-};
+}

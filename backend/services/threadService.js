@@ -1,12 +1,15 @@
 //threadService.js
 //This service is used for creating, deleting and modifying threads
+
+'use strict';
+
 module.exports = {
     locals: [
         'utils.logger',
         'daos.threadDao'
     ],
     init: init
-}
+};
 
 function init(eggnog) {
 
@@ -39,8 +42,7 @@ function init(eggnog) {
         }
 
         function getThreadsForUser(userId) {
-            return threadDao
-                    .findThreadsByUser(userId);
+            return threadDao.findThreadsByUser(userId);
         }
 
         return {

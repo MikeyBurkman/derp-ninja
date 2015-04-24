@@ -2,6 +2,8 @@
 //domain object for threads within the system
 //
 
+'use strict';
+
 module.exports = {
     locals: [
         'models.message'
@@ -10,7 +12,7 @@ module.exports = {
         'mongoose'
     ],
     init: init
-}
+};
 
 function init(eggnog) {
 
@@ -36,9 +38,12 @@ function init(eggnog) {
     });
 
     ThreadSchema.path('users').validate(function(users) {
-        return users.length != 0;
+        return users.length !== 0;
     });
 
-    eggnog.exports = mongoose.model('Thread', ThreadSchema);
+    eggnog.exports = {
+      Thread: mongoose.model('Thread', ThreadSchema),
+      schema: ThreadSchema
+    };
 
 }

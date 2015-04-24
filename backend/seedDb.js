@@ -3,6 +3,7 @@
 //
 //
 //
+'use strict';
 
 module.exports = {
     locals: [
@@ -15,7 +16,7 @@ module.exports = {
         'bluebird'
     ],
     init: init
-}
+};
 
 // TODO: Haven't actually tested this yet... but it looks good!
 function init(eggnog) {

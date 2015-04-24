@@ -1,10 +1,12 @@
 // threadCacheService.js
-// This is a cache that is used to store threads that 
+// This is a cache that is used to store threads that
 // have recently been created or accessed
+
+'use strict';
 
 module.exports = {
     init: init
-}
+};
 
 function init(eggnog) {
 
@@ -34,9 +36,7 @@ function init(eggnog) {
         return {
             getThread: getThread,
             storeThread: storeThread
-        }
+        };
 
     }
 }
-
-

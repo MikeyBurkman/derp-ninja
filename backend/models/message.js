@@ -2,13 +2,14 @@
 //domain object representing messages within the system
 //
 //
+'use strict';
 
 module.exports = {
 	externals: [
 		'mongoose'
 	],
 	init: init
-}
+};
 
 function init(eggnog) {
 

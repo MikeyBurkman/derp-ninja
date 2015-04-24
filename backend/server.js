@@ -3,17 +3,17 @@
 //BASE SETUP
 //
 //
+'use strict';
 
 module.exports = {
     isMain: true,
     locals: [
         'utils.logger',
-        'daos.threadDao',
         'services.messageService',
         'services.threadService',
         'services.sessionService',
-        'routes.Router',
         'services.threadCacheService',
+        'routes.Router',
         'models.user',
     ],
     externals: [
@@ -27,7 +27,7 @@ module.exports = {
       'console'
     ],
     init: init
-}
+};
 
 function init(eggnog) {
   // Just need to import sugar
@@ -36,14 +36,10 @@ function init(eggnog) {
   var console = eggnog.import('console');
 
   var restify = eggnog.import('restify');
-
   var Promise = eggnog.import('bluebird');
 
-  //logger
   var logger = eggnog.import('utils.logger')(__filename);
 
-  // TODO: Call only services, no daos
-  var threadDao = eggnog.import('daos.threadDao');
   var messageService = eggnog.import('services.messageService');
   var Router = eggnog.import('routes.Router');
   var sessionService = eggnog.import('services.sessionService');
@@ -67,7 +63,7 @@ function init(eggnog) {
   server.use(restify.requestLogger());
 
   var router = new Router(server);
-  sessionService.init(server);
+  sessionService.initServer(server);
 
   //MONGOOSE SETUP
   var mongoose = eggnog.import('mongoose');
@@ -84,7 +80,7 @@ function init(eggnog) {
     // Totally test code here
     setTimeout(function(){
       if(friendsList['Bruce Lee']) {
-        delete friendsList['Bruce Lee']
+        delete friendsList['Bruce Lee'];
       } else {
         friendsList.push({name:'Bruce Lee'});
       }

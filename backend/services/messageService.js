@@ -1,4 +1,6 @@
 
+'use strict';
+
 module.exports = {
 	locals: [
 		'utils.logger',
@@ -75,7 +77,7 @@ function init(eggnog) {
 
 		for (var i = 0; i < thread.messages.length; i += 1) {
 			var m = thread.messages[i];
-			if (m.timestamp >= timestamp) {
+			if (m.timestamp >= minTimestamp) {
 				msgs.push(m);
 			} else {
 				// Messages are ordered, so messages after this will have a timestamp after the argument
@@ -85,7 +87,7 @@ function init(eggnog) {
 			return Promise.resolve(msgs);
 		}
 
-	};
+	}
 
 	function _createMessage(threadId, message) {
 		var thread = getThread(threadId);
@@ -110,7 +112,7 @@ function init(eggnog) {
 
 				return savedMessage;
 			});
-	};
+	}
 
 	// local
 	function getThread(threadId) {
@@ -126,14 +128,14 @@ function init(eggnog) {
 		}
 
 		return t;
-	};
+	}
 
 	function lookupMessages(threadId, minTimestamp) {
 		return threadDao.lookupMessages(threadId, minTimestamp);
-	};
+	}
 
 	function saveMessage(threadId, message) {
 		return threadDao.createMessage(threadId, message);
-	};
+	}
 
 }

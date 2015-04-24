@@ -1,3 +1,4 @@
+'use strict';
 
 module.exports = {
     locals: [
@@ -11,14 +12,15 @@ module.exports = {
 function init(eggnog) {
 
   var logger = eggnog.import('utils.logger')(__filename);
-  var MessageThread = eggnog.import('models.thread');
-  var messageModel = eggnog.import('models.message');
+  var Thread = eggnog.import('models.thread').Thread;
+  var Message = eggnog.import('models.message').Message;
 
   eggnog.exports = {
     createThread: createThread,
     createMessage: createMessage,
     lookupMessages: lookupMessages,
-    findThreadsByUser: findThreadsByUser
+    findThreadsByUser: findThreadsByUser,
+    findUpdatedThreads: findUpdatedThreads
   };
 
   function createThread(userId, title, tags) {
@@ -27,33 +29,39 @@ function init(eggnog) {
   		createdThread: true
   	};
 
-  	var t = new MessageThread();
+  	var t = new Thread();
 
     t.users = [];
     t.users.push(userEntry);
-    t.title = title
+    t.title = title;
     t.tags = tags;
 
     return t.saveAsync();
-  };
+  }
 
   function findThreadsByUser(userId) {
-    return MessageThread.find({'users.user':userId}).execAsync();
-  };
+    return Thread.find({'users.user':userId}).execAsync();
+  }
 
   function createMessage(threadId, message) {
-    return MessageThread.findOne({_id:threadId}).execAsync()
+    return Thread.findOne({_id:threadId}).execAsync()
       .then(function(thread) {
-        var msg = new messageModel.Message();
+        var msg = new Message();
         msg.user = message.user;
         msg.messageText = message.text;
         thread.messages.push(msg);
         return thread.saveAsync();
       });
-  };
+  }
 
   function lookupMessages(threadId, minTimestamp) {
-    return MessageThread.findOne({_id: threadId}).execAsync();
-  };
+    return Thread.findOne({_id: threadId}).execAsync();
+  }
+
+  // Find all threads for the given user that have messages later than minTimestamp
+  function findUpdatedThreads(userId, minTimestamp) {
+    // TODO: Implement
+    return Thread.Find({'users.user': userId}).execAsync();
+  }
 
 }

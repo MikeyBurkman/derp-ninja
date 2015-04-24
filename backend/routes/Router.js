@@ -1,4 +1,6 @@
 
+'use strict';
+
 module.exports = {
 	locals: [
 		'utils.logger',
@@ -6,7 +8,7 @@ module.exports = {
 		'models.session'
 	],
 	init: init
-}
+};
 
 function init(eggnog) {
 
@@ -32,7 +34,7 @@ function init(eggnog) {
 		    } else {
 		        return baseApi;
 		    }
-		};
+		}
 
 		// opts: {open: true} if no authentication required
 		//		 {login: true} if passport.authenticate('local') middleware should be called
@@ -64,7 +66,7 @@ function init(eggnog) {
 			logger.info('Creating route: ', [method, endpoint, opts]);
 			return server[method].apply(server, args);
 
-		};
+		}
 
 		// Usage service.something().then(...).catch(serverError(res));
 		function serverError(res) {
@@ -77,7 +79,7 @@ function init(eggnog) {
 				});
 				res.send(500);
 			};
-		};
+		}
 
 	};
 

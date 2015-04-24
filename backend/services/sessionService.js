@@ -1,4 +1,6 @@
 
+'use strict';
+
 module.exports = {
     locals: [
         'utils.logger',
@@ -10,7 +12,7 @@ module.exports = {
         'node-uuid'
     ],
     init: init
-}
+};
 
 function init(eggnog) {
 
@@ -33,17 +35,17 @@ function init(eggnog) {
     var sessionStorage = {};
 
     //SET UP PASSPORT FOR AUTHENTICATION
-    passport.use(new LocalStrategy(function(username, password, done){
+    passport.use(new LocalStrategy(function(username, password, done) {
         logger.info('Looking up user: ', username);
         User.findOne({'_id': username}).exec()
-            .then(function(user){;
-                if(user.password === password){
+            .then(function(user) {
+                if(user.password === password) {
                    return done(null, user);
                 } else {
                     logger.info(username, ' has logged in');
                     return done(null, false, {message: 'Incorrect password'});
                 }
-            }, function(err){
+            }, function(err) {
                 return done(null, false, {message: 'bad username'});
             });
     }));
@@ -57,7 +59,7 @@ function init(eggnog) {
     });
 
     eggnog.exports = {
-        init: init,
+        initServer: initServer,
         login: login,
         logout: logout,
         isLoggedIn: isLoggedIn,
@@ -75,7 +77,7 @@ function init(eggnog) {
         } else {
             return undefined;
         }
-    };
+    }
 
     function removeSession(req) {
         var sessionId = req.cookies.session;
@@ -87,20 +89,20 @@ function init(eggnog) {
     function sessionAttr(req, attr) {
         var session = currentSession(req) || {};
         return session[attr];
-    };
+    }
 
     function login(req, res) {
         var sessionId = uuid.v1();
         var session = sessionStorage[sessionId] = {
             user: req.user
-        }
+        };
         req.cookies.session = session;
         res.setCookie('session', sessionId);
-    };
+    }
 
     function isLoggedIn(req) {
         return !!sessionAttr(req, 'user');
-    };
+    }
 
     function logout(req) {
         logger.info('logging user out');
@@ -109,16 +111,16 @@ function init(eggnog) {
 
     function currentUser(req) {
         return sessionAttr(req, 'user');
-    };
+    }
 
-    function init(server) {
+    function initServer(server) {
         server.use(passport.initialize());
         server.use(passport.session());
-    };
+    }
 
     function authenticateUserMW() {
         return passport.authenticate('local');
-    };
+    }
 
     function requireAuthMW() {
         return function(req, res, next) {
@@ -129,5 +131,5 @@ function init(eggnog) {
                 res.send(401);
             }
         };
-    };
+    }
 }
