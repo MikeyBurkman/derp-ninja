@@ -24,6 +24,7 @@ function init(eggnog) {
   };
 
   function createThread(userId, title, tags) {
+    logger.debug('Creating thread: %s by user %s', title, userId);
   	var userEntry = {
   		user: userId,
   		createdThread: true
@@ -44,6 +45,7 @@ function init(eggnog) {
   }
 
   function createMessage(threadId, message) {
+    logger.debug('Creating message on thread %s', threadId);
     return Thread.findOne({_id:threadId}).execAsync()
       .then(function(thread) {
         var msg = new Message();
