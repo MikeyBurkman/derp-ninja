@@ -15,7 +15,7 @@ Make sure that ssh is on your path as well. Again, this will be by default on Li
 SSH is included with Git, so if on Windows, adding the Git bin directory to your path should be sufficient.
 
 Do `vagrant up`
-This will download/start the VM and install all NPM/Bower dependencies. It may take 10-15 minutes.
+This will download/start the VM and install all NPM/Bower dependencies. It may take 10-15 minutes. The dependencies will only be downloaded the first time you start the VM. On subsequent times, `vagrant up` should be quick.
 
 Do `vagrant ssh`. This will SSH into the VM. Now start both frontend and backend servers by doing `gulp serve:all`.
 
