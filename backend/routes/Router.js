@@ -7,6 +7,9 @@ module.exports = {
 		'services.sessionService',
 		'models.session'
 	],
+	externals: [
+		'bluebird'
+	],
 	init: init
 };
 
@@ -15,6 +18,7 @@ function init(eggnog) {
 	var logger = eggnog.import('utils.logger')(__filename);
 	var sessionService = eggnog.import('services.sessionService');
 	var Session = eggnog.import('models.session');
+	var Promise = eggnog.import('bluebird');
 
 	eggnog.exports = function(server) {
 
@@ -47,8 +51,10 @@ function init(eggnog) {
 
 			var fn = function(req, res) {
 				logger.info('Got request to: ', [method, endpoint]);
-				var sess = new Session(sessionService.currentSession(req));
-				return cb(req, res, sess);
+				return Promise.try(function() {
+					var sess = new Session(sessionService.currentSession(req));
+					return cb(req, res, sess);
+				}).catch(serverError(res));
 			};
 
 			var middleware = [];
@@ -71,13 +77,8 @@ function init(eggnog) {
 		// Usage service.something().then(...).catch(serverError(res));
 		function serverError(res) {
 			return function(err) {
-				logger.error({
-					err: err,
-					code: err.code,
-					message: err.message,
-					stack: err.stack
-				});
-				res.send(500);
+				logger.error(err);
+				res.json(500, err);
 			};
 		}
 

@@ -26,7 +26,7 @@ function init(eggnog) {
     var logger = eggnog.import('utils.logger')(__filename);
 
     //MODELS
-    var User = eggnog.import('models.user');
+    var User = eggnog.import('models.user').User;
 
     ////////////////////
 
@@ -36,18 +36,23 @@ function init(eggnog) {
 
     //SET UP PASSPORT FOR AUTHENTICATION
     passport.use(new LocalStrategy(function(username, password, done) {
-        logger.info('Looking up user: ', username);
-        User.findOne({'_id': username}).exec()
-            .then(function(user) {
-                if(user.password === password) {
-                   return done(null, user);
-                } else {
-                    logger.info(username, ' has logged in');
-                    return done(null, false, {message: 'Incorrect password'});
-                }
-            }, function(err) {
-                return done(null, false, {message: 'bad username'});
-            });
+        try {
+          logger.info('Looking up user: ', username);
+          User.findOne({'_id': username}).exec()
+              .then(function(user) {
+                  if(user.password === password) {
+                     return done(null, user);
+                  } else {
+                      logger.info(username, ' has logged in');
+                      return done(null, false, {message: 'Incorrect password'});
+                  }
+              }, function(err) {
+                  return done(null, false, {message: 'bad username'});
+              });
+        } catch (err) {
+          logger.error(err);
+          done(new Error('Error looking up user'));
+        }
     }));
 
     passport.serializeUser(function(user, done){

@@ -36,7 +36,9 @@ function init(eggnog) {
   var console = eggnog.import('console');
 
   var restify = eggnog.import('restify');
+  
   var Promise = eggnog.import('bluebird');
+  Promise.longStackTraces();
 
   var logger = eggnog.import('utils.logger')(__filename);
 
@@ -93,7 +95,7 @@ function init(eggnog) {
     user._id = req.body.username;
     user.password = req.body.password; // yay plaintext passwords!
 
-    user.saveAsync()
+    return user.saveAsync()
       .then(function(user) {
         // TODO: Are we automatically logging in the user after this?
       	// Might be better to forward to login
@@ -102,10 +104,6 @@ function init(eggnog) {
       	sessionService.login(req, res);
         logger.info('successfully created a new user for %s', user._id);
         res.json({message: 'user created'});
-      })
-      .catch(function (err) {
-        res.json({message: 'could not save user'});
-        logger.warn('error saving using', err);
       });
   }, {open: true});
 
@@ -134,22 +132,20 @@ function init(eggnog) {
 
   // Create Thread
   router.post('/threads', function(req, res, session){
-    threadService
+    return threadService
       .createThread(session.getUser()._id, req.body.title, req.body.tags)
       .then(function(thread) {
           res.send(201, thread._id);
-      })
-      .catch(router.serverError(res));
+      });
   });
 
   //get all threads for a user
   router.get('/threads', function(req, res, session) {
-    threadService
+    return threadService
       .getThreadsForUser(session.getUser()._id)
       .then(function(threads){
           res.send(201, threads);
-      })
-      .catch(router.serverError(res));
+      });
   });
 
   // Create message
@@ -163,12 +159,11 @@ function init(eggnog) {
   		user: user
   	};
 
-  	messageService
+  	return messageService
   		.createMessage(threadId, msg)
   		.then(function() {
   			res.send(201);
-  		})
-  		.catch(router.serverError(res));
+  		});
   });
 
   // Get messages for a thread
@@ -180,12 +175,11 @@ function init(eggnog) {
 
   	logger.info('getting messages for thread: ', threadId, ts);
 
-  	messageService
+  	return messageService
   		.getMessages(threadId, ts)
   		.then(function(msgs) {
   			res.send(msgs);
-  		})
-  		.catch(router.serverError(res));
+  		});
   });
 
 
