@@ -3,7 +3,7 @@
 module.exports = {
 	imports: [
 		'utils.logger',
-		'modles.message'
+		'models.message'
 	],
 	extImports: [
 		'q'
@@ -40,4 +40,3 @@ function init(eggnog) {
 	}
 
 }
-

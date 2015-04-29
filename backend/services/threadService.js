@@ -48,9 +48,8 @@ function init(eggnog) {
                     .then(function(threads){
                         if(threads.length == 0) return q.reject({empty:userId+' is in no threads'});
                         return threads;
-                    })
-                    .catch(function(err){
-                        return q.reject(err);
+                    }, function(err){
+                      return q.reject(err);
                     });
         }
 

@@ -12,6 +12,7 @@
 		vm.close = close;
 		vm.currentFriends = [{name:'test'}];
 		setInterval(getCurrentFriends, 500);
+		setInterval(getUserThreads, 500);
 
 		////////////////
 
@@ -28,6 +29,10 @@
 				}, function(){
 					//NOOP we're long polling anyway
 				});
+		}
+
+		function getUserThreads() {
+			
 		}
 
 	}

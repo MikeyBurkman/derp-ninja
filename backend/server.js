@@ -71,12 +71,13 @@ function init(eggnog) {
 
     //All paths related to users
     var friendsList = [{name:'George Harrison'}, {name:'Mr. Ripley'}, {name:'Julius Ceasar'}];
-    router.get('/user/friend', function(req, res, session) {    
+    router.get('/user/friend', function(req, res, session) {
+      var bruce = {name: 'Bruce Lee'};
         setTimeout(function(){
-            if(friendsList['Bruce Lee']) {
-                delete friendsList['Bruce Lee']
+            if(friendsList.contains(bruce)) {
+                friendsList.remove(bruce)
             } else {
-                friendsList.push({name:'Bruce Lee'});
+                friendsList.push(bruce);
             }
         }, 10000);
         res.json({friends: friendsList});
@@ -146,8 +147,9 @@ function init(eggnog) {
             .getThreadsForUser(session.getUser()._id)
             .then(function(threads){
                 res.send(201, threads);
-            })
-            .catch(router.serverError(res));
+            }, function(){
+              router.serverError(res);
+            });
     });
 
     // Creae message
@@ -195,8 +197,9 @@ function init(eggnog) {
     		.getMessages(threadId, ts)
     		.then(function(msgs) {
     			res.send(msgs);
-    		})
-    		.catch(router.serverError(res));
+    		}, function(err){
+          router.serverError(res)
+        });
     });
 
 

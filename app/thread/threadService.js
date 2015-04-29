@@ -10,12 +10,26 @@
 	function ThreadService($http, $q){
 		var service = {
 			addThread: addThread,
+			getThreads: getThreads,
 			deleteThread: deleteThread
 		}
 
 		return service;
 
 		////////////////////
+
+		function getThreads() {
+			var req = {
+				method: 'GET',
+				url: '/api/threads',
+				header: {
+					'Content-Type': 'application/json'
+				}
+			}
+
+			var deferred = $q.defer()
+		}
+
 		function addThread(thread){
 			var req = {
 				method: 'POST',
