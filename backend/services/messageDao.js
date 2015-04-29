@@ -1,11 +1,11 @@
 //messageDao.js
 // Interface to search for and insert new messages
 module.exports = {
-	imports: [
+	locals: [
 		'utils.logger',
 		'models.message'
 	],
-	extImports: [
+	externals: [
 		'q'
 	],
 	init: init

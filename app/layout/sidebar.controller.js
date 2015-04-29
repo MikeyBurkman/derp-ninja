@@ -5,13 +5,13 @@
 		.module('app.layout')
 		.controller('SidebarController', SidebarController);
 
-	SidebarController.$inject = ['$mdSidenav', 'UserService'];
+	SidebarController.$inject = ['$mdSidenav', 'UserService', 'ThreadService'];
 
-	function SidebarController($mdSidenav, UserService) {
+	function SidebarController($mdSidenav, UserService, ThreadService) {
 		var vm = this;
 		vm.close = close;
 		vm.currentFriends = [{name:'test'}];
-		setInterval(getCurrentFriends, 500);
+		// setInterval(getCurrentFriends, 500);
 		setInterval(getUserThreads, 500);
 
 		////////////////
@@ -32,7 +32,14 @@
 		}
 
 		function getUserThreads() {
-			
+			ThreadService
+				.getThreads()
+				.then(function(threads){
+					vm.currentThreads = threads;
+				})
+				.catch(function(){
+					// NOOP
+				});
 		}
 
 	}

@@ -5,7 +5,8 @@
 		'app.core',
 		'app.layout',
 		'app.user',
-		'app.dashboard'
+		'app.dashboard',
+		'app.thread'
 	]);
 
 })();

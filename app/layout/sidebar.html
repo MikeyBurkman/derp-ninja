@@ -9,8 +9,8 @@
 		<div ng-repeat="friend in vm.currentFriends">
 			{{friend.name}}
 		</div>
-		<div>
-			
+		<div ng-repeat="thread in vm.currentThreads">
+			<a ui-sref="view-thread({id: thread._id })">Open {{thread.title}}</a>
 		</div>
 	</md-content>
 </md-sidenav>

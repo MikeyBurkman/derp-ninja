@@ -11,12 +11,36 @@
 		var service = {
 			addThread: addThread,
 			getThreads: getThreads,
-			deleteThread: deleteThread
-		}
+			getThreadMessages: getThreadMessages,
+			createMessage: createMessage
+		};
 
 		return service;
 
 		////////////////////
+
+		function createMessage(message, id) {
+			var req = {
+				method: 'POST',
+				url: '/api/threads/' + id + '/messages',
+				header: {
+					'Content-Type': 'application/json'
+				},
+				data: message
+			}
+
+			var deferred = $q.defer();
+
+			$http(req)
+				.success(function(message){
+					deferred.resolve(message);
+				})
+				.catch(function(err){
+					deferred.reject(err);
+				});
+
+				return deferred.promise;
+		}
 
 		function getThreads() {
 			var req = {
@@ -27,7 +51,39 @@
 				}
 			}
 
-			var deferred = $q.defer()
+			var deferred = $q.defer();
+
+			$http(req)
+				.success(function(threads){
+					deferred.resolve(threads)
+				})
+				.catch(function(err){
+					deferred.reject(err);
+				});
+
+				return deferred.promise;
+		}
+
+		function getThreadMessages(id) {
+			var req = {
+				method: 'GET',
+				url: '/api/threads/' + id + '/messages',
+				header: {
+					'Content-Type': 'application/json'
+				}
+			}
+
+			var deferred = $q.defer();
+
+			$http(req)
+				.success(function(messages){
+					deferred.resolve(messages);
+				})
+				.catch(function(err){
+					deferred.reject(err);
+				});
+
+				return deferred.promise;
 		}
 
 		function addThread(thread){
@@ -50,24 +106,6 @@
 				});
 			return deferred.promise;
 		}
-
-		function deleteThread(threadId){
-			var req = {
-				method: 'DELETE',
-				url: '/api/thread/',
-				headers: {
-				  'Content-Type': 'application/json'
-				},
-				data: {id: threadId}
-			}
-			var deferred = $q.defer();
-
-
-
-			return deferred.promise;
-
-
-		}
 	}
 
-})
+})();
