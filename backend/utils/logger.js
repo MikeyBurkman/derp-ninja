@@ -1,10 +1,13 @@
 //logger.js
 // Logger utility class
+
+'use strict';
+
 module.exports = {
-    init: init,
-    extImports: [
+    externals: [
         'bunyan'
-    ]
+    ],
+    init: init
 };
 
 function init(eggnog) {
@@ -15,14 +18,15 @@ function init(eggnog) {
     var logSource = true; // Logging source is slow, will want to turn this off eventually
 
     function logger(name) {
-        name = name || 'derp-ninja-messaging'
+        // If logging source, the name is redundant, so don't include it
+        name = logSource ? ' ' : (name || 'derp-ninja-messaging');
         return bunyan.createLogger({
             name: name,
             src: logSource,
             streams: [
             {
                 type: 'rotating-file',
-                path: './derp-ninja-messaging.log',
+                path: './logs/derp-ninja-messaging.log',
                 period: '1d',
                 count: 3,
                 level: 'trace'
@@ -32,6 +36,6 @@ function init(eggnog) {
                 level: 'warn'
             }]
         });
-    };
+    }
 
-};
+}

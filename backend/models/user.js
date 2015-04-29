@@ -2,12 +2,14 @@
 //user model
 //
 
+'use strict';
+
 module.exports = {
-	extImports: [
+	externals: [
 		'mongoose'
 	],
 	init: init
-}
+};
 
 function init(eggnog) {
 	var mongoose = eggnog.import('mongoose');
@@ -20,6 +22,9 @@ function init(eggnog) {
 	    created: {type: Date, default: new Date()}
 	});
 
-	eggnog.exports = mongoose.model('User', UserSchema);
+	eggnog.exports = {
+		User: mongoose.model('User', UserSchema),
+		schema: UserSchema
+	};
 
 }

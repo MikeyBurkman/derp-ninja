@@ -14,9 +14,11 @@ Make sure they're on your path. They will be automatically on Linux and OSX. On 
 Make sure that ssh is on your path as well. Again, this will be by default on Linux and OSX. 
 SSH is included with Git, so if on Windows, adding the Git bin directory to your path should be sufficient.
 
-Navigate to this folder. Do `vagrant up`
-This will download the VM and install all NPM/Bower dependencies. It may take 10-15 minutes.
+Do `vagrant up`
+This will download/start the VM and install all NPM/Bower dependencies. It may take 10-15 minutes. The dependencies will only be downloaded the first time you start the VM. On subsequent times, `vagrant up` should be quick.
 
-Do `vagrant ssh`. This will SSH into the VM. From here, navigate to /vagrant: `cd /vagrant`. Now start the server: `gulp serve`.
+Do `vagrant ssh`. This will SSH into the VM. Now start both frontend and backend servers by doing `gulp serve:all`.
 
-From a browser, go to `http://localhost:3000`. Bam.
+From a browser, go to `http://localhost:3000`. Bam. App.
+
+To view logs as they come, `tail -f logs/derp-ninja-messaging.log | bunyan`

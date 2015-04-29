@@ -7,4 +7,4 @@ app/bower_components
 .DS_Store
 **/*.log
 *.sublime-workspace
-*.log.*
+logs/*.log

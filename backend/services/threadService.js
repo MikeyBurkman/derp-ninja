@@ -1,19 +1,18 @@
 //threadService.js
 //This service is used for creating, deleting and modifying threads
+
+'use strict';
+
 module.exports = {
-    imports: [
+    locals: [
         'utils.logger',
         'daos.threadDao'
     ],
-    extImports: [
-        'q'
-    ],
     init: init
-}
+};
 
 function init(eggnog) {
 
-    var q = eggnog.import('q');
     var threadDao = eggnog.import('daos.threadDao');
     var logger = eggnog.import('utils.logger')(__filename);
 
@@ -43,14 +42,7 @@ function init(eggnog) {
         }
 
         function getThreadsForUser(userId) {
-            return threadDao
-                    .findThreadsByUser(userId)
-                    .then(function(threads){
-                        if(threads.length == 0) return q.reject({empty:userId+' is in no threads'});
-                        return threads;
-                    }, function(err){
-                      return q.reject(err);
-                    });
+            return threadDao.findThreadsByUser(userId);
         }
 
         return {

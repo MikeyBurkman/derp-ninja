@@ -1,10 +1,12 @@
 // threadCacheService.js
-// This is a cache that is used to store threads that 
+// This is a cache that is used to store threads that
 // have recently been created or accessed
+
+'use strict';
 
 module.exports = {
     init: init
-}
+};
 
 function init(eggnog) {
 
@@ -29,14 +31,12 @@ function init(eggnog) {
             //possibly set this to an internal invertal
         }
 
-        setInterval(pruneThreads, 100000);;
+        setInterval(pruneThreads, 100000);
 
         return {
             getThread: getThread,
             storeThread: storeThread
-        }
+        };
 
     }
 }
-
-

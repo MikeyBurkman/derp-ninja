@@ -2,13 +2,14 @@
 //domain object representing messages within the system
 //
 //
+'use strict';
 
 module.exports = {
-	extImports: [
+	externals: [
 		'mongoose'
 	],
 	init: init
-}
+};
 
 function init(eggnog) {
 
@@ -22,6 +23,9 @@ function init(eggnog) {
 	    created: {type: Date, default: new Date()}
 	});
 
-	eggnog.exports = MessageSchema;
+	eggnog.exports = {
+		Message: mongoose.model('Message', MessageSchema),
+		schema: MessageSchema
+	};
 
 }

@@ -87,4 +87,11 @@ gulp.task('clean', function () {
   return gulp.src(['.tmp', 'dist'], { read: false }).pipe($.clean());
 });
 
+gulp.task('lint:backend', function() {
+  return gulp.src('backend/**/*.js')
+    .pipe($.jshint())
+    .pipe($.jshint.reporter('jshint-stylish'))
+    .pipe($.size());
+});
+
 gulp.task('build', ['html', 'partials', 'images', 'fonts']);

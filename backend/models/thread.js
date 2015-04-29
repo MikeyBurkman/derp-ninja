@@ -2,19 +2,21 @@
 //domain object for threads within the system
 //
 
+'use strict';
+
 module.exports = {
-    imports: [
+    locals: [
         'models.message'
     ],
-    extImports: [
+    externals: [
         'mongoose'
     ],
     init: init
-}
+};
 
 function init(eggnog) {
 
-    var Message = eggnog.import('models.message');
+    var message = eggnog.import('models.message');
 
     var mongoose = eggnog.import('mongoose');
     var Schema = mongoose.Schema;
@@ -32,14 +34,16 @@ function init(eggnog) {
         title: {type: String, required: true},
         tags: [{type: String, default: []}],
         appTags: [{type: String, default: []}],
-        messages: {type:[Message], default: []}
+        messages: {type:[message.schema], default: []}
     });
 
     ThreadSchema.path('users').validate(function(users) {
-        return users.length != 0;
+        return users.length !== 0;
     });
-    
 
-    eggnog.exports = mongoose.model('Thread', ThreadSchema);;
+    eggnog.exports = {
+      Thread: mongoose.model('Thread', ThreadSchema),
+      schema: ThreadSchema
+    };
 
 }

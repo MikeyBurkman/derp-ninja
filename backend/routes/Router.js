@@ -1,18 +1,24 @@
 
+'use strict';
+
 module.exports = {
-	imports: [
+	locals: [
 		'utils.logger',
 		'services.sessionService',
 		'models.session'
 	],
+	externals: [
+		'bluebird'
+	],
 	init: init
-}
+};
 
 function init(eggnog) {
 
 	var logger = eggnog.import('utils.logger')(__filename);
 	var sessionService = eggnog.import('services.sessionService');
 	var Session = eggnog.import('models.session');
+	var Promise = eggnog.import('bluebird');
 
 	eggnog.exports = function(server) {
 
@@ -32,7 +38,7 @@ function init(eggnog) {
 		    } else {
 		        return baseApi;
 		    }
-		};
+		}
 
 		// opts: {open: true} if no authentication required
 		//		 {login: true} if passport.authenticate('local') middleware should be called
@@ -45,8 +51,10 @@ function init(eggnog) {
 
 			var fn = function(req, res) {
 				logger.info('Got request to: ', [method, endpoint]);
-				var sess = new Session(sessionService.currentSession(req));
-				return cb(req, res, sess);
+				return Promise.try(function() {
+					var sess = new Session(sessionService.currentSession(req));
+					return cb(req, res, sess);
+				}).catch(serverError(res));
 			};
 
 			var middleware = [];
@@ -63,16 +71,16 @@ function init(eggnog) {
 			var args = [endpoint, middleware, fn].flatten();
 			logger.info('Creating route: ', [method, endpoint, opts]);
 			return server[method].apply(server, args);
-			
-		};
+
+		}
 
 		// Usage service.something().then(...).catch(serverError(res));
 		function serverError(res) {
 			return function(err) {
-				logger.err('error: ', err);
-				res.send(500);
+				logger.error(err);
+				res.json(500, err);
 			};
-		};
+		}
 
 	};
 

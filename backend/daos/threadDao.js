@@ -1,91 +1,69 @@
+'use strict';
 
 module.exports = {
-    imports: [
+    locals: [
         'models.thread',
-        'models.message'
-    ],
-    extImports: [
-        'q'
+        'models.message',
+        'utils.logger'
     ],
     init: init
 };
 
 function init(eggnog) {
 
-    var q = eggnog.import('q');
-    var MessageThread = eggnog.import('models.thread');
-    var Message = eggnog.import('models.message');
+  var logger = eggnog.import('utils.logger')(__filename);
+  var Thread = eggnog.import('models.thread').Thread;
+  var Message = eggnog.import('models.message').Message;
 
-    eggnog.exports = {
-        createThread: createThread,
-        createMessage: createMessage,
-        lookupMessages: lookupMessages,
-        findThreadsByUser: findThreadsByUser
-    };
+  eggnog.exports = {
+    createThread: createThread,
+    createMessage: createMessage,
+    lookupMessages: lookupMessages,
+    findThreadsByUser: findThreadsByUser,
+    findUpdatedThreads: findUpdatedThreads
+  };
 
-    function createThread(userId, title, tags) {
-    	var defer = q.defer();
+  function createThread(userId, title, tags) {
+    logger.debug('Creating thread: %s by user %s', title, userId);
+  	var userEntry = {
+  		user: userId,
+  		createdThread: true
+  	};
 
-    	var userEntry = {
-    		user: userId,
-    		createdThread: true
-    	};
+  	var t = new Thread();
 
-    	var t = new MessageThread();
-        
-        t.users = [];
-        t.users.push(userEntry);
-        t.title = title
-        t.tags = tags;
-        
-        t.save(function(err, thread){
-            if(err){
-                defer.reject(err);
-            } else {
-            	defer.resolve(thread);
-            }
-        }); 
+    t.users = [];
+    t.users.push(userEntry);
+    t.title = title;
+    t.tags = tags;
 
-        return defer.promise;
-    };
+    return t.saveAsync();
+  }
 
-    function findThreadsByUser(userId) {
-        return MessageThread
-                .find({'users.user':userId})
-               .exec(); 
-    };
+  function findThreadsByUser(userId) {
+    return Thread.find({'users.user':userId}).execAsync();
+  }
 
-    function createMessage(threadId, message) {
-    	var defer = q.defer();
+  function createMessage(threadId, message) {
+    logger.debug('Creating message on thread %s', threadId);
+    return Thread.findOne({_id:threadId}).execAsync()
+      .then(function(thread) {
+        var msg = new Message();
+        msg.user = message.user;
+        msg.messageText = message.text;
+        thread.messages.push(msg);
+        return thread.saveAsync();
+      });
+  }
 
-    	MessageThread.findOne({_id:threadId}).exec()
-            .then(function(thread){
-                var msg = new Message();
-                msg.user = message.user;
-                msg.messageText = message.text;
-                thread.messages.push(msg);
-                thread.save(function(err, thread){
-                	if (err) {
-                		defer.rejet(err);
-                	} else {
-                		defer.resolve(msg);
-                	}
-                });
-            }, function(err) {
-            	defer.reject(err);
-            });
+  function lookupMessages(threadId, minTimestamp) {
+    return Thread.findOne({_id: threadId}).execAsync();
+  }
 
-        return defer.promise;
-    };
-
-    // TODO
-    function lookupMessages(threadId, minTimestamp) {
-    	var defer = q.defer();
-    	defer.resolve([]);
-    	return defer.promise;
-    };
+  // Find all threads for the given user that have messages later than minTimestamp
+  function findUpdatedThreads(userId, minTimestamp) {
+    // TODO: Implement
+    return Thread.Find({'users.user': userId}).execAsync();
+  }
 
 }
-
-
-
