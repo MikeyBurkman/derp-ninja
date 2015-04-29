@@ -36,7 +36,7 @@ function init(eggnog) {
   var console = eggnog.import('console');
 
   var restify = eggnog.import('restify');
-  
+
   var Promise = eggnog.import('bluebird');
   Promise.longStackTraces();
 
@@ -161,8 +161,8 @@ function init(eggnog) {
 
   	return messageService
   		.createMessage(threadId, msg)
-  		.then(function() {
-  			res.send(201);
+  		.then(function(thread) {
+  			res.send(201, thread[0].messages.last());
   		});
   });
 

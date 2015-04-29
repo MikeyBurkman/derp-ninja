@@ -3,12 +3,14 @@
 		<h1 class="md-toolbar-tools">Derp Ninja</h1>
 	</md-toolbar>
 	<md-content class="md-padding" ng-controller="SidebarController as vm">
-		<md-button ng-click="vm.close()" class="md-primary">Close</md-button>
 		<a ui-sref="signup">No account? Sign up here.</a>
 		<a ui-sref="login">login</a>
 		Number of friends: {{vm.currentFriends.length}}
 		<div ng-repeat="friend in vm.currentFriends">
 			{{friend.name}}
 		</div>
-	</md-content>	
-</md-sidenav> 
+		<div ng-repeat="thread in vm.currentThreads">
+			<a ui-sref="view-thread({id: thread._id })">Open {{thread.title}}</a>
+		</div>
+	</md-content>
+</md-sidenav>

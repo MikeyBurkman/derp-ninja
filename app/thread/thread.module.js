@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
 
-	angular.moduel('app.thread', []);
-	
+	angular.module('app.thread', []);
+
 })();

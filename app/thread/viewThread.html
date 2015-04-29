@@ -1,0 +1,12 @@
+<md-content>
+  <h2>{{vm.threadTitle}}</h2>
+  <div ng-repeat="message in vm.messages">
+    {{message.user}}: {{message.messageText}}
+  </div>
+  <div>
+    <form name="addMessage">
+      <input type="text" name="message" ng-model="vm.addMessage.text" required>
+      <button ng-click="vm.addMessageAction()">Add Message</button>
+    </form>
+  </div>
+</md-content>

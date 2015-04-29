@@ -22,6 +22,21 @@
 					templateUrl: 'thread/addThread.html',
 					title: 'Add a Thread'
 				}
+			},
+			{
+				state: 'view-thread',
+				config: {
+					url: '/viewThread/:id',
+					controller: 'ViewThreadController',
+					controllerAs: 'vm',
+					templateUrl: 'thread/viewThread.html',
+					resolve: {
+						messages: ['ThreadService', '$stateParams', function(ThreadService, $stateParams){
+							console.log($stateParams.id);
+							return ThreadService.getThreadMessages($stateParams.id);
+						}]
+					}
+				}
 			}
 		]
 	}
